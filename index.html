@@ -978,9 +978,205 @@
 <script src="scripts/accreditations.js" defer></script>
 
 
+<section class="py-16 md:py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+    <!-- LEFT CONTENT -->
+    <div>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+        Life at Graphic Era
+      </h2>
+
+      <p class="text-gray-600 text-lg leading-relaxed mb-8 max-w-xl">
+        More than just academics — it’s an experience. From vibrant hostels to
+        iconic academic blocks, from high-tech labs to a buzzing student
+        community, life at Graphic Era is about growth, energy, and memories
+        you’ll never forget.
+      </p>
+
+      <a
+        href="#"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white
+               bg-gradient-to-r from-blue-600 to-yellow-400 hover:opacity-90 transition">
+        Join Us for Admissions ’26
+      </a>
+    </div>
+
+    <!-- MAIN VIDEO THUMB -->
+    <div
+      class="relative rounded-2xl overflow-hidden shadow-xl aspect-video cursor-pointer"
+      onclick="openModal('X6MCS7SmNO8')"
+    >
+      <img
+        src="https://img.youtube.com/vi/X6MCS7SmNO8/maxresdefault.jpg"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- VIDEO THUMBNAILS -->
+  <div class="max-w-7xl mx-auto px-4 mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <div class="relative rounded-xl overflow-hidden shadow-lg aspect-video cursor-pointer"
+         onclick="openModal('NJ0WSfUej54')">
+      <img src="https://img.youtube.com/vi/NJ0WSfUej54/maxresdefault.jpg"
+           class="w-full h-full object-cover" />
+    </div>
+
+    <div class="relative rounded-xl overflow-hidden shadow-lg aspect-video cursor-pointer"
+         onclick="openModal('m3Ot4fWaj5U')">
+      <img src="https://img.youtube.com/vi/m3Ot4fWaj5U/maxresdefault.jpg"
+           class="w-full h-full object-cover" />
+    </div>
+
+    <div class="relative rounded-xl overflow-hidden shadow-lg aspect-video cursor-pointer"
+         onclick="openModal('ACX5kBzFHMM')">
+      <img src="https://img.youtube.com/vi/ACX5kBzFHMM/maxresdefault.jpg"
+           class="w-full h-full object-cover" />
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL -->
+<div
+  id="videoModal"
+  class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50"
+>
+  <div class="relative w-full max-w-4xl mx-4 aspect-video bg-black rounded-xl overflow-hidden">
+
+    <!-- CLOSE BUTTON -->
+    <button
+      onclick="closeModal()"
+      class="absolute -top-10 right-0 text-white text-3xl font-bold"
+    >
+      ✕
+    </button>
+
+    <!-- IFRAME -->
+    <iframe
+      id="modalIframe"
+      class="w-full h-full"
+      src=""
+      frameborder="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+</div>
+
+<script>
+  function openModal(videoId) {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('modalIframe');
+
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('modalIframe');
+
+    iframe.src = '';
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+</script>
 
 
 
+<section class="bg-white py-20">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <!-- Heading -->
+    <h2 class="text-center text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+      Frequently Asked Questions
+    </h2>
+
+    <!-- FAQ Wrapper -->
+    <div class="space-y-6">
+
+      <!-- FAQ Item -->
+      <div class="faq-item border rounded-xl shadow-sm">
+        <button
+          class="faq-btn w-full flex justify-between items-center px-6 py-5 text-left font-medium text-gray-900">
+          <span>Does the university require any entrance exam for MBA admission?</span>
+          <span class="faq-icon text-2xl font-light">+</span>
+        </button>
+
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 px-6">
+          <p class="py-4 text-gray-600 leading-relaxed">
+            Admission to the MBA program is primarily based on academic merit and personal interaction.
+            Scores from national-level entrance exams such as CAT, MAT, CMAT, or XAT may be considered,
+            but they are not mandatory for all applicants.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="faq-item border rounded-xl shadow-sm">
+        <button
+          class="faq-btn w-full flex justify-between items-center px-6 py-5 text-left font-medium text-gray-900">
+          <span>Is hostel and campus facility available for MBA students?</span>
+          <span class="faq-icon text-2xl font-light">+</span>
+        </button>
+
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 px-6">
+          <p class="py-4 text-gray-600 leading-relaxed">
+            Yes, separate on-campus hostel facilities are available for both male and female MBA students.
+            The campus also provides modern amenities including libraries, sports facilities, cafeterias,
+            medical support, and Wi-Fi-enabled infrastructure.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="faq-item border rounded-xl shadow-sm">
+        <button
+          class="faq-btn w-full flex justify-between items-center px-6 py-5 text-left font-medium text-gray-900">
+          <span>What placement opportunities are available?</span>
+          <span class="faq-icon text-2xl font-light">+</span>
+        </button>
+
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 px-6">
+          <p class="py-4 text-gray-600 leading-relaxed">
+            The university has a dedicated placement cell that facilitates internships and final placements.
+            MBA students are recruited by leading organizations across sectors such as Finance, Marketing,
+            HR, Analytics, Consulting, and Operations.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="faq-item border rounded-xl shadow-sm">
+        <button
+          class="faq-btn w-full flex justify-between items-center px-6 py-5 text-left font-medium text-gray-900">
+          <span>How can I apply for admission?</span>
+          <span class="faq-icon text-2xl font-light">+</span>
+        </button>
+
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 px-6">
+          <p class="py-4 text-gray-600 leading-relaxed">
+            Candidates can apply online through the university’s official website by filling out the
+            application form and submitting the required documents. Shortlisted applicants may be called
+            for further interaction or counseling.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="scripts/faq.js"></script>
+</section>
 
 
 <footer class="bg-[#172554] text-white pt-16">
