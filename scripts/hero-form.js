@@ -1,0 +1,148 @@
+/* ================= DATA ================= */
+const stateCityMap = {
+  "Andhra Pradesh":["Visakhapatnam","Vijayawada","Guntur"],
+  "Arunachal Pradesh":["Itanagar"],
+  "Assam":["Guwahati","Silchar"],
+  "Bihar":["Patna","Gaya"],
+  "Chhattisgarh":["Raipur","Bilaspur"],
+  "Goa":["Panaji","Margao"],
+  "Gujarat":["Ahmedabad","Surat","Vadodara"],
+  "Haryana":["Gurgaon","Faridabad"],
+  "Himachal Pradesh":["Shimla","Solan"],
+  "Jharkhand":["Ranchi","Jamshedpur"],
+  "Karnataka":["Bengaluru","Mysuru","Mangaluru"],
+  "Kerala":["Kochi","Trivandrum","Calicut"],
+  "Madhya Pradesh":["Bhopal","Indore"],
+  "Maharashtra":["Mumbai","Pune","Nagpur"],
+  "Manipur":["Imphal"],
+  "Meghalaya":["Shillong"],
+  "Mizoram":["Aizawl"],
+  "Nagaland":["Kohima"],
+  "Odisha":["Bhubaneswar","Cuttack"],
+  "Punjab":["Chandigarh","Ludhiana"],
+  "Rajasthan":["Jaipur","Udaipur"],
+  "Sikkim":["Gangtok"],
+  "Tamil Nadu":["Chennai","Coimbatore","Madurai"],
+  "Telangana":["Hyderabad","Warangal"],
+  "Tripura":["Agartala"],
+  "Uttar Pradesh":["Noida","Lucknow","Kanpur"],
+  "Uttarakhand":["Dehradun","Haridwar"],
+  "West Bengal":["Kolkata","Durgapur"],
+  "Delhi":["New Delhi","Dwarka","Saket"],
+  "Jammu & Kashmir":["Srinagar","Jammu"],
+  "Ladakh":["Leh"],
+  "Puducherry":["Puducherry"],
+  "Chandigarh":["Chandigarh"],
+  "Andaman & Nicobar":["Port Blair"],
+  "Dadra & Nagar Haveli":["Silvassa"],
+  "Lakshadweep":["Kavaratti"]
+};
+
+/* ================= ELEMENTS ================= */
+const form = document.getElementById("leadForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
+const otpInput = document.getElementById("otp");
+const otpSection = document.getElementById("otpSection");
+const otpMsg = document.getElementById("otpMsg");
+const stateSelect = document.getElementById("state");
+const citySelect = document.getElementById("city");
+const consent = document.getElementById("consent");
+
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const phoneError = document.getElementById("phoneError");
+
+let generatedOTP = null;
+let otpVerified = false;
+
+/* ================= HELPERS ================= */
+function error(input, msgEl, msg) {
+  input.classList.add("border-red-500");
+  msgEl.textContent = msg;
+  msgEl.classList.remove("hidden");
+}
+function clear(input, msgEl) {
+  input.classList.remove("border-red-500");
+  msgEl.classList.add("hidden");
+}
+
+/* ================= NAME ================= */
+nameInput.addEventListener("input", e => {
+  e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+  /^[A-Za-z ]{3,}$/.test(e.target.value)
+    ? clear(nameInput, nameError)
+    : error(nameInput, nameError, "Minimum 3 letters required");
+});
+
+/* ================= EMAIL ================= */
+emailInput.addEventListener("input", () => {
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
+    ? clear(emailInput, emailError)
+    : error(emailInput, emailError, "Invalid email");
+});
+
+/* ================= PHONE ================= */
+phoneInput.addEventListener("input", () => {
+  phoneInput.value = phoneInput.value.replace(/\D/g, "");
+  /^[0-9]{10}$/.test(phoneInput.value)
+    ? clear(phoneInput, phoneError)
+    : error(phoneInput, phoneError, "Enter 10 digit number");
+});
+
+/* ================= OTP ================= */
+document.getElementById("sendOtpBtn").addEventListener("click", () => {
+  if (!/^[0-9]{10}$/.test(phoneInput.value)) return;
+  generatedOTP = Math.floor(100000 + Math.random() * 900000);
+  console.log("OTP (demo):", generatedOTP);
+  otpSection.classList.remove("hidden");
+  otpMsg.textContent = "OTP sent successfully";
+  otpMsg.className = "text-blue-600 text-xs";
+});
+
+otpInput.addEventListener("input", () => {
+  if (otpInput.value === String(generatedOTP)) {
+    otpVerified = true;
+    otpMsg.textContent = "OTP Verified ✔";
+    otpMsg.className = "text-green-600 text-xs";
+  }
+});
+
+/* ================= STATE → CITY ================= */
+Object.keys(stateCityMap).forEach(state => {
+  const opt = document.createElement("option");
+  opt.textContent = state;
+  stateSelect.appendChild(opt);
+});
+
+stateSelect.addEventListener("change", () => {
+  citySelect.innerHTML = `<option value="">Select City</option>`;
+  (stateCityMap[stateSelect.value] || []).forEach(city => {
+    const opt = document.createElement("option");
+    opt.textContent = city;
+    citySelect.appendChild(opt);
+  });
+});
+
+/* ================= SUBMIT ================= */
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  if (!otpVerified) {
+    otpMsg.textContent = "Please verify OTP";
+    otpMsg.className = "text-red-500 text-xs";
+    return;
+  }
+
+  if (!consent.checked) {
+    document.getElementById("consentError").textContent = "Consent required";
+    document.getElementById("consentError").classList.remove("hidden");
+    return;
+  }
+
+  alert("Form submitted successfully!");
+  form.reset();
+  otpSection.classList.add("hidden");
+  otpVerified = false;
+});

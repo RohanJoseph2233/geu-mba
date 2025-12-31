@@ -14,23 +14,28 @@
 <header class="bg-blue-900 sticky top-0 z-50 shadow">
   <div class="max-w-7xl mx-auto px-4 py-2 flex justify-center items-center">
     <!-- Logo -->
-    <img src="geu-logo.png" alt="Graphic Era (Deemed to be University) Logo" class="h-12 object-contain">
+    <img src="images/geu-logo.png" alt="Graphic Era (Deemed to be University) Logo" class="h-12 object-contain">
   </div>
 </header>
 
-
 <!-- HERO SECTION -->
-<section class="relative bg-cover bg-center min-h-screen"
-  style="background-image:url('geu-camp.jpg');">
-
+<section
+  class="relative bg-cover bg-center min-h-screen"
+  style="background-image:url('images/geu-camp.jpg');"
+>
+  <!-- Overlay -->
   <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/60 to-blue-900/40"></div>
 
-  <div class="relative max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <div
+    class="relative max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+  >
 
     <!-- LEFT CONTENT -->
     <div class="text-white space-y-6 text-center lg:text-left">
+
       <h1 class="text-4xl md:text-5xl xl:text-6xl font-extrabold">
-        MBA Admissions <br> Open 2026
+        MBA Admissions <br />
+        Open 2026
       </h1>
 
       <p class="text-lg max-w-xl mx-auto lg:mx-0">
@@ -41,76 +46,96 @@
         with strong placements at Amazon, Google, Microsoft & more.
       </p>
 
-      <div class="flex justify-center lg:justify-start gap-4">
-        <div class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow border-2 border-dashed border-blue-600 w-40">
-          <h4 class="font-bold text-sm">Ranked 48</h4>
-          <p class="text-xs">Top Universities<br>NIRF 2025</p>
+      <div
+        class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2"
+      >
+
+        <!-- BOX 1 -->
+        <div
+          class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow
+                 border-2 border-dashed border-blue-600
+                 w-48 flex items-center gap-3"
+        >
+          <div class="text-3xl">🏆</div>
+          <div>
+            <h4 class="font-bold text-sm">Ranked 48</h4>
+            <p class="text-xs leading-tight">
+              Top Universities<br />
+              NIRF 2025
+            </p>
+          </div>
         </div>
 
-        <div class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow border-2 border-dashed border-yellow-500 w-40">
-          <h4 class="font-bold text-sm">Ranked 52</h4>
-          <p class="text-xs">Management Category<br>NIRF 2025</p>
+        <!-- BOX 2 -->
+        <div
+          class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow
+                 border-2 border-dashed border-yellow-500
+                 w-48 flex items-center gap-3"
+        >
+          <div class="text-3xl">🎓</div>
+          <div>
+            <h4 class="font-bold text-sm">Ranked 52</h4>
+            <p class="text-xs leading-tight">
+              Management Category<br />
+              NIRF 2025
+            </p>
+          </div>
         </div>
+
       </div>
     </div>
 
-    <!-- FORM -->
+    <!-- RIGHT FORM -->
     <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-auto">
-      <h2 class="text-2xl font-bold text-blue-900 text-center mb-5">Apply Now</h2>
+      <h2 class="text-2xl font-bold text-blue-900 text-center mb-5">
+        Apply Now
+      </h2>
 
       <form id="leadForm" class="space-y-4" novalidate>
 
-        <!-- NAME -->
         <div>
           <input id="name" type="text" placeholder="Full Name"
             class="w-full border rounded-lg px-4 py-2.5">
           <p id="nameError" class="text-xs text-red-500 hidden"></p>
         </div>
 
-        <!-- EMAIL -->
         <div>
           <input id="email" type="email" placeholder="Email"
             class="w-full border rounded-lg px-4 py-2.5">
           <p id="emailError" class="text-xs text-red-500 hidden"></p>
         </div>
 
-        <!-- PHONE -->
         <div>
           <div class="flex gap-2">
             <input id="phone" type="tel" placeholder="10-digit Number"
               class="flex-1 border rounded-lg px-4 py-2.5">
             <button type="button" id="sendOtpBtn"
-              class="bg-gradient-to-r from-blue-600 to-yellow-400 px-4 rounded-lg text-white font-semibold">
+              class="bg-gradient-to-r from-blue-600 to-yellow-400
+                     px-4 rounded-lg text-white font-semibold">
               Verify
             </button>
           </div>
           <p id="phoneError" class="text-xs text-red-500 hidden"></p>
         </div>
 
-        <!-- OTP -->
         <div id="otpSection" class="hidden">
           <input id="otp" type="text" placeholder="Enter OTP"
             class="w-full border rounded-lg px-4 py-2.5">
           <p id="otpMsg" class="text-xs mt-1"></p>
         </div>
 
-        <!-- STATE -->
         <div>
           <select id="state" class="w-full border rounded-lg px-4 py-2.5">
             <option value="">Select State</option>
           </select>
-          <p id="stateError" class="text-xs text-red-500 hidden"></p>
         </div>
 
-        <!-- CITY -->
         <div>
           <select id="city" class="w-full border rounded-lg px-4 py-2.5">
             <option value="">Select City</option>
           </select>
-          <p id="cityError" class="text-xs text-red-500 hidden"></p>
         </div>
 
-        <!-- COURSE -->
         <div>
           <select id="course" class="w-full border rounded-lg px-4 py-2.5">
             <option value="">Select Course</option>
@@ -119,10 +144,8 @@
             <option>MBA HR</option>
             <option>MBA Analytics</option>
           </select>
-          <p id="courseError" class="text-xs text-red-500 hidden"></p>
         </div>
 
-        <!-- CONSENT -->
         <div>
           <label class="flex gap-2 text-sm text-gray-600">
             <input type="checkbox" id="consent">
@@ -131,166 +154,21 @@
           <p id="consentError" class="text-xs text-red-500 hidden"></p>
         </div>
 
-        <button class="w-full py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-blue-600 to-yellow-400">
+        <button
+          class="w-full py-3 rounded-lg text-white font-semibold
+                 bg-gradient-to-r from-blue-600 to-yellow-400">
           Submit
         </button>
 
       </form>
     </div>
+
   </div>
 </section>
 
-<script>
-/* ================= DATA ================= */
-const stateCityMap = {
-  "Andhra Pradesh":["Visakhapatnam","Vijayawada","Guntur"],
-  "Arunachal Pradesh":["Itanagar"],
-  "Assam":["Guwahati","Silchar"],
-  "Bihar":["Patna","Gaya"],
-  "Chhattisgarh":["Raipur","Bilaspur"],
-  "Goa":["Panaji","Margao"],
-  "Gujarat":["Ahmedabad","Surat","Vadodara"],
-  "Haryana":["Gurgaon","Faridabad"],
-  "Himachal Pradesh":["Shimla","Solan"],
-  "Jharkhand":["Ranchi","Jamshedpur"],
-  "Karnataka":["Bengaluru","Mysuru","Mangaluru"],
-  "Kerala":["Kochi","Trivandrum","Calicut"],
-  "Madhya Pradesh":["Bhopal","Indore"],
-  "Maharashtra":["Mumbai","Pune","Nagpur"],
-  "Manipur":["Imphal"],
-  "Meghalaya":["Shillong"],
-  "Mizoram":["Aizawl"],
-  "Nagaland":["Kohima"],
-  "Odisha":["Bhubaneswar","Cuttack"],
-  "Punjab":["Chandigarh","Ludhiana"],
-  "Rajasthan":["Jaipur","Udaipur"],
-  "Sikkim":["Gangtok"],
-  "Tamil Nadu":["Chennai","Coimbatore","Madurai"],
-  "Telangana":["Hyderabad","Warangal"],
-  "Tripura":["Agartala"],
-  "Uttar Pradesh":["Noida","Lucknow","Kanpur"],
-  "Uttarakhand":["Dehradun","Haridwar"],
-  "West Bengal":["Kolkata","Durgapur"],
-  "Delhi":["New Delhi","Dwarka","Saket"],
-  "Jammu & Kashmir":["Srinagar","Jammu"],
-  "Ladakh":["Leh"],
-  "Puducherry":["Puducherry"],
-  "Chandigarh":["Chandigarh"],
-  "Andaman & Nicobar":["Port Blair"],
-  "Dadra & Nagar Haveli":["Silvassa"],
-  "Lakshadweep":["Kavaratti"]
-};
+<!-- External JS -->
+<script src="scripts/hero-form.js" defer></script>
 
-/* ================= ELEMENTS ================= */
-const form = document.getElementById("leadForm");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
-const otpInput = document.getElementById("otp");
-const otpSection = document.getElementById("otpSection");
-const otpMsg = document.getElementById("otpMsg");
-const stateSelect = document.getElementById("state");
-const citySelect = document.getElementById("city");
-const consent = document.getElementById("consent");
-
-const nameError = document.getElementById("nameError");
-const emailError = document.getElementById("emailError");
-const phoneError = document.getElementById("phoneError");
-
-let generatedOTP = null;
-let otpVerified = false;
-
-/* ================= HELPERS ================= */
-function error(input, msgEl, msg) {
-  input.classList.add("border-red-500");
-  msgEl.textContent = msg;
-  msgEl.classList.remove("hidden");
-}
-function clear(input, msgEl) {
-  input.classList.remove("border-red-500");
-  msgEl.classList.add("hidden");
-}
-
-/* ================= NAME (NUMBERS LOCKED) ================= */
-nameInput.addEventListener("input", e => {
-  e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
-  /^[A-Za-z ]{3,}$/.test(e.target.value)
-    ? clear(nameInput, nameError)
-    : error(nameInput, nameError, "Minimum 3 letters required");
-});
-
-/* ================= EMAIL ================= */
-emailInput.addEventListener("input", () => {
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
-    ? clear(emailInput, emailError)
-    : error(emailInput, emailError, "Invalid email address");
-});
-
-/* ================= PHONE ================= */
-phoneInput.addEventListener("input", () => {
-  phoneInput.value = phoneInput.value.replace(/\D/g, "");
-  /^[0-9]{10}$/.test(phoneInput.value)
-    ? clear(phoneInput, phoneError)
-    : error(phoneInput, phoneError, "Enter 10 digit number");
-});
-
-/* ================= OTP ================= */
-document.getElementById("sendOtpBtn").onclick = () => {
-  if (!/^[0-9]{10}$/.test(phoneInput.value)) return;
-  generatedOTP = Math.floor(100000 + Math.random() * 900000);
-  console.log("OTP (demo):", generatedOTP);
-  otpSection.classList.remove("hidden");
-  otpMsg.textContent = "OTP sent successfully";
-  otpMsg.className = "text-blue-600 text-xs";
-};
-
-otpInput.addEventListener("input", () => {
-  if (otpInput.value === String(generatedOTP)) {
-    otpVerified = true;
-    otpMsg.textContent = "OTP Verified ✔";
-    otpMsg.className = "text-green-600 text-xs";
-  }
-});
-
-/* ================= STATE → CITY ================= */
-Object.keys(stateCityMap).forEach(s => {
-  const opt = document.createElement("option");
-  opt.textContent = s;
-  stateSelect.appendChild(opt);
-});
-
-stateSelect.addEventListener("change", () => {
-  citySelect.innerHTML = `<option value="">Select City</option>`;
-  (stateCityMap[stateSelect.value] || []).forEach(c => {
-    const opt = document.createElement("option");
-    opt.textContent = c;
-    citySelect.appendChild(opt);
-  });
-});
-
-/* ================= SUBMIT ================= */
-form.addEventListener("submit", e => {
-  e.preventDefault();
-
-  if (!otpVerified) {
-    otpMsg.textContent = "Please verify OTP";
-    otpMsg.className = "text-red-500 text-xs";
-    return;
-  }
-
-  if (!consent.checked) {
-    const ce = document.getElementById("consentError");
-    ce.textContent = "Consent required";
-    ce.classList.remove("hidden");
-    return;
-  }
-
-  alert("Form submitted successfully!");
-  form.reset();
-  otpSection.classList.add("hidden");
-  otpVerified = false;
-});
-</script>
 
 
 
@@ -389,10 +267,9 @@ form.addEventListener("submit", e => {
       type="text"
       placeholder="Search courses, eligibility, skills..."
       class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      oninput="handleSearch()"
     />
     <button
-      onclick="clearSearch()"
+      id="clearSearchBtn"
       class="px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-blue-600 to-yellow-400">
       Clear
     </button>
@@ -421,232 +298,8 @@ form.addEventListener("submit", e => {
   </div>
 </div>
 
-<!-- ================= SCRIPT ================= -->
-<script>
-/* ================= DATA ================= */
-const mbaPrograms = [
-  {
-    title: "MBA in Finance",
-    intro: "Build expertise in financial planning, analysis & markets",
-    bullets: [
-      "Financial modelling & valuation",
-      "Corporate finance strategy",
-      "Investment & risk management"
-    ],
-    about:
-      "The MBA in Finance program equips students with advanced financial knowledge and analytical skills required in today's global business environment.",
-    eligibility: "Graduation with minimum 50%"
-  },
-  {
-    title: "MBA in HR Management",
-    intro: "People strategy, leadership & organizational excellence",
-    bullets: [
-      "Talent acquisition & retention",
-      "HR analytics & performance",
-      "Employee engagement strategies"
-    ],
-    about:
-      "MBA in HR Management focuses on developing future-ready HR leaders capable of managing talent in dynamic organizations.",
-    eligibility: "Any Graduate"
-  },
-  {
-    title: "MBA in Business Analytics",
-    intro: "Data-driven decision making for modern enterprises",
-    bullets: [
-      "Data analysis & visualization",
-      "Predictive analytics models",
-      "Business intelligence tools"
-    ],
-    about:
-      "The MBA in Business Analytics program bridges the gap between business strategy and data science.",
-    eligibility: "Maths preferred"
-  },
-  {
-    title: "MBA in Marketing",
-    intro: "Brand building, digital growth & market leadership",
-    bullets: [
-      "Digital & social media marketing",
-      "Brand strategy & positioning",
-      "Consumer behavior analysis"
-    ],
-    about:
-      "MBA in Marketing is designed to create professionals with a deep understanding of consumer markets.",
-    eligibility: "Any Graduate"
-  }
-];
-
-const track = document.getElementById("scrollTrack");
-const wrapper = document.getElementById("scrollWrapper");
-const searchInput = document.getElementById("searchInput");
-
-let scrollIndex = 0;
-let autoScrollTimer = null;
-let inactivityTimer = null;
-let isAutoScrollEnabled = true;
-
-const CARD_WIDTH = 340 + 32;
-
-/* ================= RENDER ================= */
-function renderCards(data, duplicate = false) {
-  track.innerHTML = "";
-  scrollIndex = 0;
-  track.style.transform = "translateX(0)";
-
-  const list = duplicate ? [...data, ...data] : data;
-
-  list.forEach(program => {
-    const card = document.createElement("div");
-    card.className = `
-      bg-white rounded-xl p-6 flex flex-col shadow
-      transition-all duration-300
-    `;
-
-    card.innerHTML = `
-      <h3 class="text-xl font-semibold text-blue-700 mb-2">
-        ${program.title}
-      </h3>
-
-      <p class="text-sm text-gray-600 mb-4">
-        ${program.intro}
-      </p>
-
-      <div class="space-y-2 text-gray-600">
-        ${program.bullets.map(b => `<p>• ${b}</p>`).join("")}
-      </div>
-
-      <div class="border-t border-gray-200 my-4"></div>
-
-      <div
-        class="course-content text-gray-600 space-y-3
-               max-h-0 overflow-hidden transition-all duration-300">
-        <p class="text-sm leading-relaxed">${program.about}</p>
-        <p class="font-semibold">Eligibility:</p>
-        <p>${program.eligibility}</p>
-
-        <button
-          onclick="scrollToTop()"
-          class="mt-4 w-full py-2 rounded-lg text-white font-semibold
-                 bg-gradient-to-r from-blue-600 to-yellow-400">
-          Apply Now
-        </button>
-      </div>
-
-      <button
-        class="mt-4 text-blue-600 font-medium self-start hover:underline read-more-btn">
-        Read More ▼
-      </button>
-    `;
-
-    track.appendChild(card);
-  });
-
-  attachReadMoreHandlers();
-}
-
-/* ================= READ MORE (SINGLE OPEN) ================= */
-function attachReadMoreHandlers() {
-  const buttons = document.querySelectorAll(".read-more-btn");
-
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      stopAutoScroll();
-      isAutoScrollEnabled = false;
-
-      buttons.forEach(otherBtn => {
-        const content = otherBtn.previousElementSibling;
-        if (otherBtn !== btn) {
-          content.style.maxHeight = "0px";
-          otherBtn.textContent = "Read More ▼";
-        }
-      });
-
-      const content = btn.previousElementSibling;
-      const expanded = content.style.maxHeight && content.style.maxHeight !== "0px";
-
-      if (expanded) {
-        content.style.maxHeight = "0px";
-        btn.textContent = "Read More ▼";
-        startAutoScroll();
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-        btn.textContent = "Read Less ▲";
-      }
-    });
-  });
-}
-
-/* ================= AUTO SCROLL ================= */
-function startAutoScroll() {
-  stopAutoScroll();
-  isAutoScrollEnabled = true;
-
-  autoScrollTimer = setInterval(() => {
-    if (!isAutoScrollEnabled) return;
-
-    scrollIndex++;
-    track.style.transform = `translateX(-${scrollIndex * CARD_WIDTH}px)`;
-
-    if (scrollIndex >= mbaPrograms.length) {
-      scrollIndex = 0;
-      track.style.transition = "none";
-      track.style.transform = "translateX(0)";
-      setTimeout(() => {
-        track.style.transition = "transform 0.5s ease";
-      });
-    }
-  }, 2200);
-}
-
-function stopAutoScroll() {
-  clearInterval(autoScrollTimer);
-}
-
-/* ================= SEARCH ================= */
-function handleSearch() {
-  stopAutoScroll();
-  isAutoScrollEnabled = false;
-
-  const query = searchInput.value.toLowerCase().trim();
-  clearTimeout(inactivityTimer);
-
-  if (!query) {
-    renderCards(mbaPrograms, true);
-    inactivityTimer = setTimeout(startAutoScroll, 2000);
-    return;
-  }
-
-  const filtered = mbaPrograms.filter(p =>
-    (`${p.title} ${p.intro} ${p.about} ${p.eligibility}`)
-      .toLowerCase()
-      .includes(query)
-  );
-
-  renderCards(filtered, false);
-}
-
-function clearSearch() {
-  searchInput.value = "";
-  renderCards(mbaPrograms, true);
-  startAutoScroll();
-}
-
-/* ================= APPLY ================= */
-function scrollToTop() {
-  stopAutoScroll();
-  isAutoScrollEnabled = false;
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-/* ================= TOUCH ================= */
-wrapper.addEventListener("touchstart", stopAutoScroll);
-wrapper.addEventListener("touchend", () => {
-  inactivityTimer = setTimeout(startAutoScroll, 2000);
-});
-
-/* ================= INIT ================= */
-renderCards(mbaPrograms, true);
-startAutoScroll();
-</script>
+<!-- ================= JS ================= -->
+<script src="scripts/programs.js"></script>
 
 <style>
 .scrollbar-hide::-webkit-scrollbar {
@@ -1008,75 +661,8 @@ startAutoScroll();
 </section>
 
 <!-- ================= SCRIPT ================= -->
-<script>
-const students = [
-  { name: "Diksha Sobti", package: "₹10.89 LPA", image: "diksha-sobti.png", logo: "dhanguard.png" },
-  { name: "Dikshant Sharma", package: "₹15.40 LPA", image: "dikshant-sharma.png", logo: "gmr.png" },
-  { name: "Vaibhav Negi", package: "₹7.8 LPA", image: "vaibhav-negi.png", logo: "bny-mellon.png" }
-];
+<script src="scripts/placement.js">
 
-const img = document.getElementById("studentImage");
-const nameEl = document.getElementById("studentName");
-const pkgEl = document.getElementById("studentPackage");
-const logoEl = document.getElementById("companyLogo");
-
-const nameMobile = document.getElementById("studentNameMobile");
-const pkgMobile = document.getElementById("studentPackageMobile");
-const logoMobile = document.getElementById("companyLogoMobile");
-
-const dots = document.getElementById("dots");
-let index = 0;
-
-function render(i) {
-  img.style.opacity = 0;
-  if (logoEl) logoEl.style.opacity = 0;
-
-  setTimeout(() => {
-    img.src = students[i].image;
-
-    nameEl.textContent = students[i].name;
-    pkgEl.textContent = students[i].package;
-    logoEl.src = students[i].logo;
-
-    nameMobile.textContent = students[i].name;
-    pkgMobile.textContent = students[i].package;
-    logoMobile.src = students[i].logo;
-
-    img.style.opacity = 1;
-    if (logoEl) logoEl.style.opacity = 1;
-    updateDots();
-  }, 300);
-}
-
-function createDots() {
-  dots.innerHTML = "";
-  students.forEach((_, i) => {
-    const dot = document.createElement("span");
-    dot.className = "w-2.5 h-2.5 rounded-full bg-gray-300 cursor-pointer";
-    dot.onclick = () => {
-      index = i;
-      render(index);
-    };
-    dots.appendChild(dot);
-  });
-}
-
-function updateDots() {
-  [...dots.children].forEach((dot, i) => {
-    dot.className =
-      i === index
-        ? "w-2.5 h-2.5 rounded-full bg-blue-900"
-        : "w-2.5 h-2.5 rounded-full bg-gray-300";
-  });
-}
-
-setInterval(() => {
-  index = (index + 1) % students.length;
-  render(index);
-}, 4500);
-
-createDots();
-render(index);
 </script>
 
 
@@ -1153,6 +739,8 @@ render(index);
 
   </div>
 </section>
+
+
 <style>
   /* Smooth snapping */
   .carousel {
@@ -1180,7 +768,8 @@ render(index);
     </p>
   </div>
 
-  <!-- Carousel Wrapper -->
+
+
   <div class="relative w-full">
     <div
       id="carousel"
@@ -1188,98 +777,16 @@ render(index);
         carousel
         flex gap-4
         overflow-x-scroll scroll-smooth
-        px-0
-        md:px-4
+        px-0 md:px-4
         lg:max-w-7xl lg:mx-auto
         scrollbar-hide
       "
     ></div>
   </div>
+  <script src="scripts/carousel.js"></script>
+
 </section>
 
-<script>
-/* ===============================
-   ONLY DATA YOU PROVIDE
-=============================== */
-const images = [
-  "Adarsh-Bharti-Musa-Amazon.jpg",
-  "Anushka-Agarwal-Amazon.jpg",
-  "Ashutosh-K-Pandey-Microsoft.jpg",
-  "Aradhaya-Bahuguna-Amazon.jpg",
-  "Priyanshi-Bhadoria-Atlassian.jpg"
-];
-
-const carousel = document.getElementById("carousel");
-
-/* Duplicate images for infinite loop */
-const slides = [...images, ...images];
-
-slides.forEach(src => {
-  const item = document.createElement("div");
-  item.className = `
-    carousel-item
-    flex-shrink-0
-    w-full
-    md:w-full
-    lg:w-1/3
-  `;
-
-  item.innerHTML = `
-    <div class="bg-[#f5f9ff] rounded-none md:rounded-2xl shadow-lg overflow-hidden">
-      <img
-        src="${src}"
-        draggable="false"
-        class="
-          w-full
-          h-auto
-          max-h-[340px]
-          sm:max-h-[380px]
-          lg:h-[420px]
-          object-contain
-          lg:object-cover
-        "
-      />
-    </div>
-  `;
-
-  carousel.appendChild(item);
-});
-
-/* ===============================
-   AUTO SCROLL LOGIC
-=============================== */
-let autoScroll;
-const scrollAmount = () => carousel.clientWidth;
-
-function startAutoScroll() {
-  autoScroll = setInterval(() => {
-    carousel.scrollBy({
-      left: scrollAmount(),
-      behavior: "smooth"
-    });
-
-    if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-      setTimeout(() => {
-        carousel.scrollLeft = 0;
-      }, 600);
-    }
-  }, 3000);
-}
-
-function stopAutoScroll() {
-  clearInterval(autoScroll);
-}
-
-startAutoScroll();
-
-/* Pause on hover / touch */
-carousel.addEventListener("mouseenter", stopAutoScroll);
-carousel.addEventListener("mouseleave", startAutoScroll);
-carousel.addEventListener("touchstart", stopAutoScroll);
-carousel.addEventListener("touchend", startAutoScroll);
-</script>
-
-</body>
 
 
 <section class="bg-[#f6f9fc] py-20 px-6">
@@ -1301,71 +808,71 @@ carousel.addEventListener("touchend", startAutoScroll);
 
       <!-- Logo Card -->
       <div class="logo-card">
-        <img src="Adobe-logo.png" alt="Adobe" />
+        <img src="images/Adobe-logo.png" alt="Adobe" />
       </div>
 
       <div class="logo-card">
-        <img src="Amazon-Logo.png" alt="Amazon" />
+        <img src="images/Amazon-Logo.png" alt="Amazon" />
       </div>
 
       <div class="logo-card">
-        <img src="American-Express-logo.png" alt="American Express" />
+        <img src="images/American-Express-logo.png" alt="American Express" />
       </div>
 
       <div class="logo-card">
-        <img src="BNY_Mellon.png" alt="BNY Mellon" />
+        <img src="images/BNY_Mellon.png" alt="BNY Mellon" />
       </div>
 
       <div class="logo-card">
-        <img src="deshaw.png" alt="DE Shaw & Co" />
+        <img src="images/deshaw.png" alt="DE Shaw & Co" />
       </div>
 
       <div class="logo-card">
-        <img src="Deutsche_Bank_logo.png" alt="Deutsche Bank" />
+        <img src="images/Deutsche_Bank_logo.png" alt="Deutsche Bank" />
       </div>
 
       <div class="logo-card">
-        <img src="flipkart.png" alt="Flipkart" />
+        <img src="images/flipkart.png" alt="Flipkart" />
       </div>
 
       <div class="logo-card">
-        <img src="Goldman-Sachs-Logo.png" alt="Goldman Sachs" />
+        <img src="images/Goldman-Sachs-Logo.png" alt="Goldman Sachs" />
       </div>
 
       <div class="logo-card">
-        <img src="Google-logo.png" alt="Google" />
+        <img src="images/Google-logo.png" alt="Google" />
       </div>
 
       <div class="logo-card">
-        <img src="informatica-logo.png" alt="Informatica" />
+        <img src="images/informatica-logo.png" alt="Informatica" />
       </div>
 
       <div class="logo-card">
-        <img src="microsoft.png" alt="Microsoft" />
+        <img src="images/microsoft.png" alt="Microsoft" />
       </div>
 
       <div class="logo-card">
-        <img src="Morgan_Stanley_Logo.png" alt="Morgan Stanley" />
+        <img src="images/Morgan_Stanley_Logo.png" alt="Morgan Stanley" />
       </div>
 
       <div class="logo-card">
-        <img src="nasdaq.png" alt="Nasdaq" />
+        <img src="images/nasdaq.png" alt="Nasdaq" />
       </div>
 
       <div class="logo-card">
-        <img src="paypal.svg" alt="PayPal" />
+        <img src="images/paypal.svg" alt="PayPal" />
       </div>
 
       <div class="logo-card">
-        <img src="Uber-Logo.png" alt="Uber" />
+        <img src="images/Uber-Logo.png" alt="Uber" />
       </div>
 
       <div class="logo-card">
-        <img src="Volvo-Logo.png" alt="Volvo" />
+        <img src="images/Volvo-Logo.png" alt="Volvo" />
       </div>
 
       <div class="logo-card">
-        <img src="zsacler.png" alt="Zscaler" />
+        <img src="images/zsacler.png" alt="Zscaler" />
       </div>
 
       <div class="logo-card font-semibold text-gray-700 text-sm">
@@ -1423,7 +930,10 @@ carousel.addEventListener("touchend", startAutoScroll);
   }
 </style>
 
+
 <section class="bg-blue-900 py-10">
+   <link rel="stylesheet" href="style/highlights.css" />
+
   <div class="max-w-7xl mx-auto px-4">
     <h2 class="text-center text-yellow-500 text-2xl md:text-3xl font-bold mb-8">
       Key Highlights
@@ -1442,123 +952,10 @@ carousel.addEventListener("touchend", startAutoScroll);
       "
     ></div>
   </div>
+  <script src="scripts/highlights.js"></script>
+
 </section>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const highlights = [
-    {
-      image: "expert-teachers.jpg",
-      title: "Specialized Teaching from Experts",
-      description:
-        "The academic rigor and the task of the creative transformation of an individual are the centre pieces of this program - both these targets are achievable only by ensuring just the right combination of teaching experts. Graphic Era ensures that students are taught by top faculty members in their respective fields, renowned for their excellence. This is evident across all domains, starting from the Program Head, who is a seasoned management professional holding an undergraduate degree from Graphic Era in engineering and advanced qualifications from a prestigious institution."
-    },
-    {
-      image: "top-placement.jpg",
-      title: "Top Internships and Placements",
-      description:
-        "We have held great pride in being one of the first few private Universities in India who took on the task of ensuring Top of the Line placements for our students, and with MBA, we will write a new success story for the world to see. The University is equipped with one of the best placement teams in the country and this has resulted in Top Placements for our Flagship Programs consistently over the year, with the highest package for the year 2023 under Brand Graphic Era currently sits at INR 84.88 Lacs (Domestic Package - CSE)."
-    },
-    {
-      image: "nba-accredited.jpg",
-      title: "NBA Accredited | AICTE Approved Degree",
-      description:
-        "Unlike some of the other B-Schools in India, Graphic Era (Deemed to be University) is offering a Full-Time NBA Accredited and AICTE Approved Degree and not a diploma. These accreditations are attained through rigorous compliances of the Academic Processes of the University and carry great relevance for students who visualise a career that spans across geographical boundaries. NBA Accredited and AICTE Approved Degrees enable students to enjoy easy Credit Transfers across Top International Universities, opening up unlimited avenues of Research and Employment Opportunities Globally."
-    }
-  ];
-
-  const track = document.getElementById("highlightTrack");
-
-  highlights.forEach(item => {
-    const card = document.createElement("div");
-
-    card.className = `
-      snap-center
-      flex-shrink-0
-      w-[85%] sm:w-[65%] md:w-auto
-      bg-white rounded-xl shadow-md
-      overflow-hidden
-      flex flex-col
-    `;
-
-    card.innerHTML = `
-      <!-- IMAGE (EDGE TO EDGE, NO CROP) -->
-      <div class="w-full bg-gray-100">
-        <img
-          src="${item.image}"
-          alt="${item.title}"
-          class="w-full h-auto object-contain"
-        />
-      </div>
-
-      <!-- CONTENT -->
-      <div class="p-4">
-        <h3 class="text-blue-700 text-base font-bold mb-2">
-          ${item.title}
-        </h3>
-
-        <p
-          class="desc text-gray-700 text-sm leading-relaxed overflow-hidden transition-all duration-300"
-          style="max-height: 4rem;"
-        >
-          ${item.description}
-        </p>
-
-        <button
-          class="read-btn mt-3 text-blue-600 text-sm font-semibold hover:underline">
-          Read More ▼
-        </button>
-      </div>
-    `;
-
-    const btn = card.querySelector(".read-btn");
-    const text = card.querySelector(".desc");
-
-    btn.addEventListener("click", () => {
-      const expanded = text.classList.contains("expanded");
-
-      document.querySelectorAll(".desc").forEach(p => {
-        p.classList.remove("expanded");
-        p.style.maxHeight = "4rem";
-      });
-
-      document.querySelectorAll(".read-btn").forEach(b => {
-        b.textContent = "Read More ▼";
-      });
-
-      if (!expanded) {
-        text.classList.add("expanded");
-        text.style.maxHeight = text.scrollHeight + "px";
-        btn.textContent = "Read Less ▲";
-      }
-    });
-
-    track.appendChild(card);
-  });
-
-  /* ========= AUTO SCROLL (MOBILE ONLY) ========= */
-  let index = 0;
-
-  function autoScroll() {
-    if (window.innerWidth >= 768) return;
-
-    const cards = track.children;
-    index = (index + 1) % cards.length;
-
-    track.scrollTo({
-      left: cards[index].offsetLeft,
-      behavior: "smooth"
-    });
-  }
-
-  let interval = setInterval(autoScroll, 4000);
-
-  track.addEventListener("touchstart", () => clearInterval(interval));
-  track.addEventListener("touchend", () => {
-    interval = setInterval(autoScroll, 4000);
-  });
-});
-</script>
 
 <section class="bg-slate-50 py-20">
   <div class="max-w-7xl mx-auto px-4">
@@ -1577,69 +974,12 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
-<script>
-const accreditations = [
-  {
-    logo: "nirf.svg",
-    title: "NIRF Rankings",
-    description:
-      "Recognised among India’s top universities under the National Institutional Ranking Framework for academic excellence and research impact."
-  },
-  {
-    logo: "nba.svg",
-    title: "NBA Accredited Programs",
-    description:
-      "NBA accreditation ensures outcome-based education, industry relevance, and global quality standards across key academic programs."
-  },
-  {
-    logo: "naac.svg",
-    title: "NAAC A+ Accredited",
-    description:
-      "NAAC A+ accreditation reflects strong institutional governance, academic processes, infrastructure, and student outcomes."
-  },
-  {
-    logo: "aicte.svg",
-    title: "AICTE Approval",
-    description:
-      "Approved by AICTE, Graphic Era ensures academic excellence across all technical courses. UGC recognized with Regularized Status by the Ministry of Education. "
-  },
-    {
-    logo: "ugc.svg",
-    title: "UGC Recognition",
-    description:
-      "Approved by UGC and accorded the coveted Regularized Status by the Ministry of Education, Government of India. "
-  },
-];
+<!-- ✅ External JS -->
+<script src="scripts/accreditations.js" defer></script>
 
-const grid = document.getElementById("accreditationGrid");
 
-accreditations.forEach(item => {
-  const card = document.createElement("div");
 
-  card.className = `
-    bg-white rounded-2xl shadow-md hover:shadow-xl transition
-    p-7 text-center
-  `;
 
-  card.innerHTML = `
-    <img
-      src="${item.logo}"
-      alt="${item.title}"
-      class="h-14 mx-auto mb-5 object-contain"
-    />
-
-    <h3 class="text-lg font-bold text-gray-900 mb-3">
-      ${item.title}
-    </h3>
-
-    <p class="text-sm text-gray-600 leading-relaxed">
-      ${item.description}
-    </p>
-  `;
-
-  grid.appendChild(card);
-});
-</script>
 
 
 
@@ -1651,7 +991,7 @@ accreditations.forEach(item => {
     <!-- University Info -->
     <div>
       <div class="flex items-center gap-3 mb-4">
-        <img src="geu-logo.png" alt="GEU Logo" class="h-14">
+        <img src="images/geu-logo.png" alt="GEU Logo" class="h-14">
       </div>
       <p class="text-sm text-gray-300 leading-relaxed">
         566/6, Bell Road, Society Area,<br>
