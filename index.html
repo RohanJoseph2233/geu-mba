@@ -1044,55 +1044,8 @@
   </div>
 </section>
 
-<!-- VIDEO MODAL -->
-<div
-  id="videoModal"
-  class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50"
->
-  <div class="relative w-full max-w-5xl mx-4 aspect-video bg-black rounded-xl overflow-hidden">
 
-    <!-- CLOSE BUTTON (INSIDE PLAYER) -->
-    <button
-      onclick="closeModal()"
-      class="absolute top-4 right-4 z-10 bg-black/70 text-white
-             w-10 h-10 flex items-center justify-center rounded-full
-             hover:bg-black transition"
-    >
-      ✕
-    </button>
-
-    <!-- IFRAME -->
-    <iframe
-      id="modalIframe"
-      class="w-full h-full"
-      src=""
-      frameborder="0"
-      allow="autoplay; encrypted-media; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-
-  </div>
-</div>
-
-<script>
-  function openModal(videoId) {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('modalIframe');
-
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('modalIframe');
-
-    iframe.src = '';
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-  }
-</script>
+<script src="scripts/video.js" defer></script>
 
 
 
@@ -1254,14 +1207,14 @@
     © 2026 Graphic Era (Deemed to be University). All Rights Reserved.
   </div>
 
-  <!-- Scroll To Top Button -->
+  <!-- Scroll To Top Button --> 
   <a
     href="#"
     class="fixed bottom-6 right-6 bg-blue-700 text-white p-3 rounded-full shadow-lg
            hover:bg-blue-800 transition duration-300"
   >
     ↑
-  </a>
+  </a> 
 
 </footer>
 
