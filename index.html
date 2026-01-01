@@ -1002,16 +1002,26 @@
       </a>
     </div>
 
-    <!-- MAIN VIDEO -->
+    <!-- MAIN VIDEO (HOVER PREVIEW + CLICK MODAL) -->
     <div
-      class="relative rounded-2xl overflow-hidden shadow-xl aspect-video cursor-pointer group"
+      class="relative rounded-2xl overflow-hidden shadow-xl aspect-video group"
+      onmouseenter="startPreview(this, 'X6MCS7SmNO8')"
+      onmouseleave="stopPreview(this)"
       onclick="openModal('X6MCS7SmNO8')"
     >
       <img
         src="https://img.youtube.com/vi/X6MCS7SmNO8/hqdefault.jpg"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover preview-thumb"
       />
-      <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition">
+
+      <iframe
+        class="absolute inset-0 w-full h-full hidden preview-iframe"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+      <div class="absolute inset-0 bg-black/30 flex items-center justify-center pointer-events-none">
         <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 24 24">
           <path d="M8 5v14l11-7z"/>
         </svg>
@@ -1019,55 +1029,24 @@
     </div>
 
   </div>
-
-  <!-- VIDEO THUMBNAILS -->
-  <div class="max-w-7xl mx-auto px-4 mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-    <div class="relative rounded-xl overflow-hidden shadow-lg aspect-video cursor-pointer"
-         onclick="openModal('NJ0WSfUej54')">
-      <img src="https://img.youtube.com/vi/NJ0WSfUej54/hqdefault.jpg"
-           class="w-full h-full object-cover" />
-    </div>
-
-    <div class="relative rounded-xl overflow-hidden shadow-lg aspect-video cursor-pointer"
-         onclick="openModal('m3Ot4fWaj5U')">
-      <img src="https://img.youtube.com/vi/m3Ot4fWaj5U/hqdefault.jpg"
-           class="w-full h-full object-cover" />
-    </div>
-
-    <div class="relative rounded-xl overflow-hidden shadow-lg aspect-video cursor-pointer"
-         onclick="openModal('ACX5kBzFHMM')">
-      <img src="https://img.youtube.com/vi/ACX5kBzFHMM/hqdefault.jpg"
-           class="w-full h-full object-cover" />
-    </div>
-
-  </div>
 </section>
 
 <!-- VIDEO MODAL -->
-<div
-  id="videoModal"
-  class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50"
->
+<div id="videoModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
   <div class="relative w-full max-w-5xl mx-4 aspect-video bg-black rounded-xl overflow-hidden">
 
-    <!-- CLOSE BUTTON (INSIDE PLAYER) -->
     <button
       onclick="closeModal()"
       class="absolute top-4 right-4 z-10 bg-black/70 text-white
-             w-10 h-10 flex items-center justify-center rounded-full
-             hover:bg-black transition"
-    >
+             w-10 h-10 flex items-center justify-center rounded-full">
       ✕
     </button>
 
-    <!-- IFRAME -->
     <iframe
       id="modalIframe"
       class="w-full h-full"
-      src=""
       frameborder="0"
-      allow="autoplay; encrypted-media; picture-in-picture"
+      allow="autoplay; encrypted-media"
       allowfullscreen>
     </iframe>
 
@@ -1075,6 +1054,31 @@
 </div>
 
 <script>
+  let previewTimer;
+
+  function startPreview(card, videoId) {
+    const iframe = card.querySelector('.preview-iframe');
+    const thumb = card.querySelector('.preview-thumb');
+
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&rel=0`;
+    iframe.classList.remove('hidden');
+    thumb.classList.add('hidden');
+
+    previewTimer = setTimeout(() => {
+      stopPreview(card);
+    }, 20000);
+  }
+
+  function stopPreview(card) {
+    const iframe = card.querySelector('.preview-iframe');
+    const thumb = card.querySelector('.preview-thumb');
+
+    clearTimeout(previewTimer);
+    iframe.src = '';
+    iframe.classList.add('hidden');
+    thumb.classList.remove('hidden');
+  }
+
   function openModal(videoId) {
     const modal = document.getElementById('videoModal');
     const iframe = document.getElementById('modalIframe');
@@ -1093,7 +1097,6 @@
     modal.classList.remove('flex');
   }
 </script>
-
 
 
 
