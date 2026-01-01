@@ -977,7 +977,6 @@
 <!-- ✅ External JS -->
 <script src="scripts/accreditations.js" defer></script>
 
-
 <section class="py-16 md:py-20 bg-white">
   <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -1019,7 +1018,8 @@
         allowfullscreen>
       </iframe>
 
-      <div class="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+      <!-- PLAY BUTTON -->
+      <div class="play-btn absolute inset-0 z-30 flex items-center justify-center">
         <svg class="w-20 h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24">
           <path d="M8 5v14l11-7z"/>
         </svg>
@@ -1031,6 +1031,7 @@
   <!-- OTHER VIDEOS -->
   <div class="max-w-7xl mx-auto px-4 mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
+    <!-- VIDEO CARD -->
     <div class="video-card relative aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer bg-black"
          data-video="NJ0WSfUej54">
       <img src="https://img.youtube.com/vi/NJ0WSfUej54/hqdefault.jpg"
@@ -1038,6 +1039,12 @@
       <iframe class="preview absolute inset-0 w-full h-full hidden z-20"
               frameborder="0"
               allow="autoplay; encrypted-media"></iframe>
+
+      <div class="play-btn absolute inset-0 z-30 flex items-center justify-center">
+        <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
     </div>
 
     <div class="video-card relative aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer bg-black"
@@ -1047,6 +1054,12 @@
       <iframe class="preview absolute inset-0 w-full h-full hidden z-20"
               frameborder="0"
               allow="autoplay; encrypted-media"></iframe>
+
+      <div class="play-btn absolute inset-0 z-30 flex items-center justify-center">
+        <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
     </div>
 
     <div class="video-card relative aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer bg-black"
@@ -1056,6 +1069,12 @@
       <iframe class="preview absolute inset-0 w-full h-full hidden z-20"
               frameborder="0"
               allow="autoplay; encrypted-media"></iframe>
+
+      <div class="play-btn absolute inset-0 z-30 flex items-center justify-center">
+        <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
     </div>
 
   </div>
@@ -1080,54 +1099,29 @@
   </div>
 </div>
 
-<script>
-  let previewTimer;
 
-  document.querySelectorAll('.video-card').forEach(card => {
-    const videoId = card.dataset.video;
-    const iframe = card.querySelector('.preview');
-    const thumb = card.querySelector('.thumb');
 
-    card.addEventListener('mouseenter', () => {
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&rel=0`;
-      iframe.classList.remove('hidden');
-      thumb.classList.add('hidden');
 
-      previewTimer = setTimeout(() => stopPreview(card), 20000);
-    });
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
 
-    card.addEventListener('mouseleave', () => stopPreview(card));
-    card.addEventListener('click', () => openModal(videoId));
-  });
+    <!-- HEADING -->
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-12">
+      Campus Highlights
+    </h2>
 
-  function stopPreview(card) {
-    const iframe = card.querySelector('.preview');
-    const thumb = card.querySelector('.thumb');
+    <!-- GRID -->
+    <div
+      id="campusGrid"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+    >
+      <!-- Cards injected via JS -->
+    </div>
 
-    clearTimeout(previewTimer);
-    iframe.src = '';
-    iframe.classList.add('hidden');
-    thumb.classList.remove('hidden');
-  }
+  </div>
+</section>
 
-  function openModal(videoId) {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('modalIframe');
-
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('modalIframe');
-
-    iframe.src = '';
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-  }
-</script>
+<script src="scripts/campus.js"></script>
 
 
 
