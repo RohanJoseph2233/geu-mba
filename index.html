@@ -1003,15 +1003,24 @@
     </div>
 
     <!-- MAIN VIDEO -->
-    <div class="video-card aspect-video rounded-2xl overflow-hidden shadow-xl cursor-pointer"
-         data-video="X6MCS7SmNO8">
-      <img src="https://img.youtube.com/vi/X6MCS7SmNO8/hqdefault.jpg"
-           class="thumb w-full h-full object-cover">
-      <iframe class="preview hidden absolute inset-0 w-full h-full"
-              frameborder="0"
-              allow="autoplay; encrypted-media"></iframe>
-      <div class="overlay absolute inset-0 bg-black/30 flex items-center justify-center">
-        <svg class="w-20 h-20 text-white" fill="currentColor" viewBox="0 0 24 24">
+    <div
+      class="video-card relative aspect-video rounded-2xl overflow-hidden shadow-xl cursor-pointer bg-black"
+      data-video="X6MCS7SmNO8"
+    >
+      <img
+        src="https://img.youtube.com/vi/X6MCS7SmNO8/hqdefault.jpg"
+        class="thumb absolute inset-0 w-full h-full object-cover z-10"
+      >
+
+      <iframe
+        class="preview absolute inset-0 w-full h-full hidden z-20"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+      <div class="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+        <svg class="w-20 h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24">
           <path d="M8 5v14l11-7z"/>
         </svg>
       </div>
@@ -1022,29 +1031,29 @@
   <!-- OTHER VIDEOS -->
   <div class="max-w-7xl mx-auto px-4 mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-    <div class="video-card aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer"
+    <div class="video-card relative aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer bg-black"
          data-video="NJ0WSfUej54">
       <img src="https://img.youtube.com/vi/NJ0WSfUej54/hqdefault.jpg"
-           class="thumb w-full h-full object-cover">
-      <iframe class="preview hidden absolute inset-0 w-full h-full"
+           class="thumb absolute inset-0 w-full h-full object-cover z-10">
+      <iframe class="preview absolute inset-0 w-full h-full hidden z-20"
               frameborder="0"
               allow="autoplay; encrypted-media"></iframe>
     </div>
 
-    <div class="video-card aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer"
+    <div class="video-card relative aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer bg-black"
          data-video="m3Ot4fWaj5U">
       <img src="https://img.youtube.com/vi/m3Ot4fWaj5U/hqdefault.jpg"
-           class="thumb w-full h-full object-cover">
-      <iframe class="preview hidden absolute inset-0 w-full h-full"
+           class="thumb absolute inset-0 w-full h-full object-cover z-10">
+      <iframe class="preview absolute inset-0 w-full h-full hidden z-20"
               frameborder="0"
               allow="autoplay; encrypted-media"></iframe>
     </div>
 
-    <div class="video-card aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer"
+    <div class="video-card relative aspect-video rounded-xl overflow-hidden shadow-lg cursor-pointer bg-black"
          data-video="ACX5kBzFHMM">
       <img src="https://img.youtube.com/vi/ACX5kBzFHMM/hqdefault.jpg"
-           class="thumb w-full h-full object-cover">
-      <iframe class="preview hidden absolute inset-0 w-full h-full"
+           class="thumb absolute inset-0 w-full h-full object-cover z-10">
+      <iframe class="preview absolute inset-0 w-full h-full hidden z-20"
               frameborder="0"
               allow="autoplay; encrypted-media"></iframe>
     </div>
@@ -1072,7 +1081,7 @@
 </div>
 
 <script>
-  let previewTimeout;
+  let previewTimer;
 
   document.querySelectorAll('.video-card').forEach(card => {
     const videoId = card.dataset.video;
@@ -1084,11 +1093,10 @@
       iframe.classList.remove('hidden');
       thumb.classList.add('hidden');
 
-      previewTimeout = setTimeout(() => stopPreview(card), 20000);
+      previewTimer = setTimeout(() => stopPreview(card), 20000);
     });
 
     card.addEventListener('mouseleave', () => stopPreview(card));
-
     card.addEventListener('click', () => openModal(videoId));
   });
 
@@ -1096,7 +1104,7 @@
     const iframe = card.querySelector('.preview');
     const thumb = card.querySelector('.thumb');
 
-    clearTimeout(previewTimeout);
+    clearTimeout(previewTimer);
     iframe.src = '';
     iframe.classList.add('hidden');
     thumb.classList.remove('hidden');
@@ -1120,7 +1128,6 @@
     modal.classList.remove('flex');
   }
 </script>
-
 
 
 
