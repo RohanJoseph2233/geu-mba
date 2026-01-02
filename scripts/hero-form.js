@@ -28,77 +28,87 @@ const stateCityMap = {
   "Uttar Pradesh":["Noida","Lucknow","Kanpur"],
   "Uttarakhand":["Dehradun","Haridwar"],
   "West Bengal":["Kolkata","Durgapur"],
-  "Delhi":["New Delhi","Dwarka","Saket"],
-  "Jammu & Kashmir":["Srinagar","Jammu"],
-  "Ladakh":["Leh"],
-  "Puducherry":["Puducherry"],
-  "Chandigarh":["Chandigarh"],
-  "Andaman & Nicobar":["Port Blair"],
-  "Dadra & Nagar Haveli":["Silvassa"],
-  "Lakshadweep":["Kavaratti"]
+  "Delhi":["New Delhi","Dwarka","Saket"]
 };
 
 /* ================= ELEMENTS ================= */
 const form = document.getElementById("leadForm");
+
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
+
 const otpInput = document.getElementById("otp");
 const otpSection = document.getElementById("otpSection");
 const otpMsg = document.getElementById("otpMsg");
+
 const stateSelect = document.getElementById("state");
 const citySelect = document.getElementById("city");
+const courseSelect = document.getElementById("course");
 const consent = document.getElementById("consent");
 
 const nameError = document.getElementById("nameError");
 const emailError = document.getElementById("emailError");
 const phoneError = document.getElementById("phoneError");
+const stateError = document.getElementById("stateError");
+const cityError = document.getElementById("cityError");
+const courseError = document.getElementById("courseError");
+const consentError = document.getElementById("consentError");
 
+/* ================= STATE ================= */
 let generatedOTP = null;
 let otpVerified = false;
 
 /* ================= HELPERS ================= */
-function error(input, msgEl, msg) {
-  input.classList.add("border-red-500");
-  msgEl.textContent = msg;
-  msgEl.classList.remove("hidden");
+function showError(input, errorEl, message) {
+  input?.classList.add("border-red-500");
+  errorEl.textContent = message;
+  errorEl.classList.remove("hidden");
 }
-function clear(input, msgEl) {
-  input.classList.remove("border-red-500");
-  msgEl.classList.add("hidden");
+
+function clearError(input, errorEl) {
+  input?.classList.remove("border-red-500");
+  errorEl.classList.add("hidden");
 }
 
 /* ================= NAME ================= */
 nameInput.addEventListener("input", e => {
   e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
   /^[A-Za-z ]{3,}$/.test(e.target.value)
-    ? clear(nameInput, nameError)
-    : error(nameInput, nameError, "Minimum 3 letters required");
+    ? clearError(nameInput, nameError)
+    : showError(nameInput, nameError, "Minimum 3 letters required");
 });
 
 /* ================= EMAIL ================= */
 emailInput.addEventListener("input", () => {
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)
-    ? clear(emailInput, emailError)
-    : error(emailInput, emailError, "Invalid email");
+    ? clearError(emailInput, emailError)
+    : showError(emailInput, emailError, "Invalid email address");
 });
 
 /* ================= PHONE ================= */
 phoneInput.addEventListener("input", () => {
   phoneInput.value = phoneInput.value.replace(/\D/g, "");
   /^[0-9]{10}$/.test(phoneInput.value)
-    ? clear(phoneInput, phoneError)
-    : error(phoneInput, phoneError, "Enter 10 digit number");
+    ? clearError(phoneInput, phoneError)
+    : showError(phoneInput, phoneError, "Enter 10-digit number");
 });
 
 /* ================= OTP ================= */
 document.getElementById("sendOtpBtn").addEventListener("click", () => {
-  if (!/^[0-9]{10}$/.test(phoneInput.value)) return;
+  if (!/^[0-9]{10}$/.test(phoneInput.value)) {
+    showError(phoneInput, phoneError, "Enter valid phone number first");
+    return;
+  }
+
   generatedOTP = Math.floor(100000 + Math.random() * 900000);
   console.log("OTP (demo):", generatedOTP);
+
   otpSection.classList.remove("hidden");
   otpMsg.textContent = "OTP sent successfully";
   otpMsg.className = "text-blue-600 text-xs";
+
+  otpVerified = false;
 });
 
 otpInput.addEventListener("input", () => {
@@ -106,43 +116,75 @@ otpInput.addEventListener("input", () => {
     otpVerified = true;
     otpMsg.textContent = "OTP Verified ✔";
     otpMsg.className = "text-green-600 text-xs";
+  } else {
+    otpVerified = false;
   }
 });
 
 /* ================= STATE → CITY ================= */
 Object.keys(stateCityMap).forEach(state => {
   const opt = document.createElement("option");
+  opt.value = state;
   opt.textContent = state;
   stateSelect.appendChild(opt);
 });
 
 stateSelect.addEventListener("change", () => {
   citySelect.innerHTML = `<option value="">Select City</option>`;
+
   (stateCityMap[stateSelect.value] || []).forEach(city => {
     const opt = document.createElement("option");
+    opt.value = city;
     opt.textContent = city;
     citySelect.appendChild(opt);
   });
+
+  clearError(stateSelect, stateError);
 });
 
 /* ================= SUBMIT ================= */
 form.addEventListener("submit", e => {
   e.preventDefault();
+  let valid = true;
+
+  if (!stateSelect.value) {
+    showError(stateSelect, stateError, "Please select a state");
+    valid = false;
+  } else clearError(stateSelect, stateError);
+
+  if (!citySelect.value) {
+    showError(citySelect, cityError, "Please select a city");
+    valid = false;
+  } else clearError(citySelect, cityError);
+
+  if (!courseSelect.value) {
+    showError(courseSelect, courseError, "Please select a course");
+    valid = false;
+  } else clearError(courseSelect, courseError);
 
   if (!otpVerified) {
     otpMsg.textContent = "Please verify OTP";
     otpMsg.className = "text-red-500 text-xs";
-    return;
+    valid = false;
   }
 
   if (!consent.checked) {
-    document.getElementById("consentError").textContent = "Consent required";
-    document.getElementById("consentError").classList.remove("hidden");
-    return;
+    consentError.textContent = "Consent is required";
+    consentError.classList.remove("hidden");
+    valid = false;
+  } else {
+    consentError.classList.add("hidden");
   }
 
+  if (!valid) return;
+
   alert("Form submitted successfully!");
+
   form.reset();
   otpSection.classList.add("hidden");
   otpVerified = false;
 });
+
+
+
+
