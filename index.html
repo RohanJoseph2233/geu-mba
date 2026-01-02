@@ -34,21 +34,19 @@
     <div class="text-white space-y-6 text-center lg:text-left">
 
       <h1 class="text-4xl md:text-5xl xl:text-6xl font-extrabold">
-        MBA Admissions <br />
-        Open 2026
+        MBA Admissions <br /> Open 2026
       </h1>
 
       <p class="text-lg max-w-xl mx-auto lg:mx-0">
-        Ranked
+        Begin your career at the university ranked
         <span class="font-bold underline decoration-yellow-400">
           48 amongst top universities of India by NIRF 2025
         </span>
         with strong placements at Amazon, Google, Microsoft & more.
       </p>
 
-      <div
-        class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2"
-      >
+      <!-- RANKING BOXES WITH EMOJIS -->
+      <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
 
         <!-- BOX 1 -->
         <div
@@ -60,7 +58,7 @@
           <div>
             <h4 class="font-bold text-sm">Ranked 48</h4>
             <p class="text-xs leading-tight">
-              Top Universities<br />
+              Amongst Top Universities<br />
               NIRF 2025
             </p>
           </div>
@@ -86,81 +84,135 @@
     </div>
 
     <!-- RIGHT FORM -->
-    <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-auto">
-      <h2 class="text-2xl font-bold text-blue-900 text-center mb-5">
-        Apply Now
-      </h2>
+    <div class="w-full flex justify-center">
+     <div class="w-full max-w-[360px]">
 
-      <form id="leadForm" class="space-y-4" novalidate>
 
-        <div>
-          <input id="name" type="text" placeholder="Full Name"
-            class="w-full border rounded-lg px-4 py-2.5">
-          <p id="nameError" class="text-xs text-red-500 hidden"></p>
-        </div>
+        <!-- FORM HEADING -->
+        <h2 class="text-center text-white text-2xl font-bold mb-4">
+          Apply Now
+        </h2>
 
-        <div>
-          <input id="email" type="email" placeholder="Email"
-            class="w-full border rounded-lg px-4 py-2.5">
-          <p id="emailError" class="text-xs text-red-500 hidden"></p>
-        </div>
+ <!-- FORM CARD -->
+<div class="bg-white rounded-xl shadow-xl px-6 py-5 max-w-xs mx-auto relative">
 
-        <div>
-          <div class="flex gap-2">
-            <input id="phone" type="tel" placeholder="10-digit Number"
-              class="flex-1 border rounded-lg px-4 py-2.5">
-            <button type="button" id="sendOtpBtn"
-              class="bg-gradient-to-r from-blue-600 to-yellow-400
-                     px-4 rounded-lg text-white font-semibold">
-              Verify
-            </button>
-          </div>
-          <p id="phoneError" class="text-xs text-red-500 hidden"></p>
-        </div>
+  <form id="leadForm" class="space-y-3.5" novalidate>
 
-        <div id="otpSection" class="hidden">
-          <input id="otp" type="text" placeholder="Enter OTP"
-            class="w-full border rounded-lg px-4 py-2.5">
-          <p id="otpMsg" class="text-xs mt-1"></p>
-        </div>
+    <!-- Full Name -->
+    <div>
+      <label class="block font-semibold text-xs mb-1">Full Name</label>
+      <input id="name" type="text" placeholder="Your Name"
+        class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
+      <p id="nameError" class="text-[10px] text-red-500 hidden"></p>
+    </div>
 
-        <div>
-          <select id="state" class="w-full border rounded-lg px-4 py-2.5">
-            <option value="">Select State</option>
-          </select>
-        </div>
+    <!-- Email -->
+    <div>
+      <label class="block font-semibold text-xs mb-1">Email</label>
+      <input id="email" type="email" placeholder="Your Email"
+        class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
+      <p id="emailError" class="text-[10px] text-red-500 hidden"></p>
+    </div>
 
-        <div>
-          <select id="city" class="w-full border rounded-lg px-4 py-2.5">
-            <option value="">Select City</option>
-          </select>
-        </div>
-
-        <div>
-          <select id="course" class="w-full border rounded-lg px-4 py-2.5">
-            <option value="">Select Course</option>
-            <option>MBA Finance</option>
-            <option>MBA Marketing</option>
-            <option>MBA HR</option>
-            <option>MBA Analytics</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="flex gap-2 text-sm text-gray-600">
-            <input type="checkbox" id="consent">
-            I authorize Graphic Era to contact me via Email, SMS & WhatsApp.
-          </label>
-          <p id="consentError" class="text-xs text-red-500 hidden"></p>
-        </div>
-
-        <button
-          class="w-full py-3 rounded-lg text-white font-semibold
+    <!-- Phone -->
+    <div>
+      <label class="block font-semibold text-xs mb-1">Phone</label>
+      <div class="flex gap-2">
+        <input id="phone" type="tel" placeholder="10-digit number"
+          class="flex-1 h-9 px-4 rounded-md border border-gray-200 text-xs">
+        <button type="button" id="sendOtpBtn"
+          class="h-9 px-3 rounded-md text-white text-xs font-semibold
                  bg-gradient-to-r from-blue-600 to-yellow-400">
-          Submit
+          Verify
         </button>
+      </div>
+      <p id="phoneError" class="text-[10px] text-red-500 hidden"></p>
+    </div>
 
-      </form>
+    <!-- State -->
+    <div>
+      <label class="block font-semibold text-xs mb-1">State</label>
+      <select id="state" class="w-full h-9 px-4 rounded-md border text-xs">
+        <option value="">Select State</option>
+      </select>
+      <p id="stateError" class="text-[10px] text-red-500 hidden"></p>
+    </div>
+
+    <!-- City -->
+    <div>
+      <label class="block font-semibold text-xs mb-1">City</label>
+      <select id="city" class="w-full h-9 px-4 rounded-md border text-xs">
+        <option value="">Select City</option>
+      </select>
+      <p id="cityError" class="text-[10px] text-red-500 hidden"></p>
+    </div>
+
+    <!-- Course -->
+    <div>
+      <label class="block font-semibold text-xs mb-1">Course</label>
+      <select id="course" class="w-full h-9 px-4 rounded-md border text-xs">
+        <option value="">Select Course</option>
+        <option>MBA Finance</option>
+        <option>MBA Marketing</option>
+        <option>MBA HR</option>
+        <option>MBA Analytics</option>
+      </select>
+      <p id="courseError" class="text-[10px] text-red-500 hidden"></p>
+    </div>
+
+    <!-- Consent -->
+    <div class="flex gap-2 text-[10px] font-bold">
+      <input type="checkbox" id="consent" class="w-4 h-4">
+      <label>
+        I authorize Graphic Era to contact me via Email, SMS, WhatsApp and Call.
+      </label>
+    </div>
+    <p id="consentError" class="text-[10px] text-red-500 hidden"></p>
+
+    <!-- Submit -->
+    <button
+      class="w-full h-10 rounded-md text-white text-xs font-semibold
+             bg-gradient-to-r from-blue-600 to-yellow-400">
+      Submit
+    </button>
+
+  </form>
+</div>
+
+<!-- OTP MODAL -->
+<div id="otpModal"
+  class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+  <div class="bg-white rounded-xl p-5 w-[300px] relative">
+
+    <button id="closeOtp"
+      class="absolute top-2 right-3 text-lg text-gray-400">×</button>
+
+    <h3 class="text-sm font-semibold mb-1">Verify Phone Number</h3>
+    <p id="otpInfo" class="text-[11px] text-gray-600 mb-3"></p>
+
+    <input id="otpInput" type="text"
+      placeholder="Enter 6-digit OTP"
+      class="w-full h-9 px-3 border rounded-md text-xs mb-3">
+
+    <div class="flex gap-2">
+      <button id="verifyOtpBtn"
+        class="flex-1 h-9 rounded-md text-xs font-semibold text-white
+               bg-gradient-to-r from-blue-600 to-yellow-400">
+        Verify
+      </button>
+      <button id="cancelOtpBtn"
+        class="flex-1 h-9 rounded-md border text-xs">
+        Cancel
+      </button>
+    </div>
+
+    <p id="otpMsg" class="text-[10px] mt-2"></p>
+  </div>
+</div>
+
+
+      </div>
     </div>
 
   </div>
