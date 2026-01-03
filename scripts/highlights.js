@@ -26,38 +26,43 @@ document.addEventListener("DOMContentLoaded", () => {
   highlights.forEach(item => {
     const card = document.createElement("div");
 
+    // Added h-fit so the card height is defined by its content
     card.className = `
       snap-center
       flex-shrink-0
-      w-[85%] sm:w-[65%] md:w-auto
+      w-[85%] sm:w-[65%] md:w-full
       bg-white rounded-xl shadow-md
       overflow-hidden
       flex flex-col
+      h-fit
     `;
 
+    // UPDATED IMAGE SECTION:
+    // Reverted to using h-auto so the image isn't cropped.
+    // It will take up its natural space.
     card.innerHTML = `
       <div class="w-full bg-gray-100">
         <img
           src="${item.image}"
           alt="${item.title}"
-          class="w-full h-auto object-contain"
+          class="w-full h-auto align-middle"
         />
       </div>
 
-      <div class="p-4">
+      <div class="p-4 flex flex-col flex-grow">
         <h3 class="text-blue-700 text-base font-bold mb-2">
           ${item.title}
         </h3>
 
         <p
-          class="desc text-gray-700 text-sm leading-relaxed overflow-hidden transition-all duration-300"
-          style="max-height: 4rem;"
+          class="desc text-gray-700 text-sm leading-relaxed overflow-hidden transition-all duration-500 ease-in-out"
+          style="max-height: 4.5rem;"
         >
           ${item.description}
         </p>
 
         <button
-          class="read-btn mt-3 text-blue-600 text-sm font-semibold hover:underline">
+          class="read-btn mt-3 text-blue-600 text-sm font-semibold hover:underline w-fit">
           Read More ▼
         </button>
       </div>
@@ -69,17 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       const expanded = text.classList.contains("expanded");
 
+      // 1. Close all other cards first (accordion effect)
       document.querySelectorAll(".desc").forEach(p => {
         p.classList.remove("expanded");
-        p.style.maxHeight = "4rem";
+        p.style.maxHeight = "4.5rem";
       });
 
       document.querySelectorAll(".read-btn").forEach(b => {
         b.textContent = "Read More ▼";
       });
 
+      // 2. If current card wasn't expanded, expand it now
       if (!expanded) {
         text.classList.add("expanded");
+        // scrollHeight gives the exact height of the hidden text
         text.style.maxHeight = text.scrollHeight + "px";
         btn.textContent = "Read Less ▲";
       }
@@ -90,24 +98,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ========= AUTO SCROLL (MOBILE ONLY) ========= */
   let index = 0;
+  let interval;
 
-  function autoScroll() {
-    if (window.innerWidth >= 768) return;
+  function startAutoScroll() {
+    // Clear any existing interval just in case
+    if (interval) clearInterval(interval);
 
-    const cards = track.children;
-    index = (index + 1) % cards.length;
+    interval = setInterval(() => {
+      // Only run on mobile breakpoints
+      if (window.innerWidth >= 768) return;
 
-    track.scrollTo({
-      left: cards[index].offsetLeft,
-      behavior: "smooth"
-    });
+      const cards = track.children;
+      if (cards.length === 0) return;
+
+      index = (index + 1) % cards.length;
+
+      // Using scrollLeft instead of scrollTo for better cross-browser compatibility in some cases
+      // Adding a small offset (-20) handles padding issues during scroll
+      track.scrollTo({
+        left: cards[index].offsetLeft - 20,
+        behavior: "smooth"
+      });
+    }, 4000);
   }
 
-  let interval = setInterval(autoScroll, 4000);
+  // Start the scroller
+  startAutoScroll();
 
+  // Pause on touch, resume on touch end
   track.addEventListener("touchstart", () => clearInterval(interval));
-  track.addEventListener("touchend", () => {
-    interval = setInterval(autoScroll, 4000);
-  });
+  track.addEventListener("touchend", startAutoScroll);
 
+  // Optional: Pause on mouse hover for desktop users testing responsiveness
+  track.addEventListener("mouseenter", () => clearInterval(interval));
+  track.addEventListener("mouseleave", startAutoScroll);
 });
