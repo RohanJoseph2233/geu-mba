@@ -19,212 +19,208 @@
 </header>
 
 <!-- HERO SECTION -->
-<section
-  class="relative bg-cover bg-center min-h-screen"
-  style="background-image:url('images/geu-camp.jpg');"
->
-  <!-- Overlay -->
+<section class="relative bg-cover bg-center min-h-screen flex items-center" style="background-image:url('images/geu-camp.jpg');">
   <div class="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/60 to-blue-900/40"></div>
 
-  <div
-    class="relative max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-  >
+  <div class="relative max-w-7xl mx-auto px-4 py-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-    <!-- LEFT CONTENT -->
     <div class="text-white space-y-6 text-center lg:text-left">
-
       <h1 class="text-4xl md:text-5xl xl:text-6xl font-extrabold">
         MBA Admissions <br /> Open 2026
       </h1>
-
       <p class="text-lg max-w-xl mx-auto lg:mx-0">
         Begin your career at the university ranked
         <span class="font-bold underline decoration-yellow-400">
           48 amongst top universities of India by NIRF 2025
         </span>
-        with strong placements at Amazon, Google, Microsoft & more.
+        with strong placements at leading companies like Amazon, Google, Microsoft & more.
       </p>
 
-      <!-- RANKING BOXES WITH EMOJIS -->
       <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-
-        <!-- BOX 1 -->
-        <div
-          class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow
-                 border-2 border-dashed border-blue-600
-                 w-48 flex items-center gap-3"
-        >
+        <div class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow border-2 border-dashed border-blue-600 w-48 flex items-center gap-3">
           <div class="text-3xl">🏆</div>
           <div>
             <h4 class="font-bold text-sm">Ranked 48</h4>
-            <p class="text-xs leading-tight">
-              Amongst Top Universities<br />
-              NIRF 2025
-            </p>
+            <p class="text-xs leading-tight">Amongst Top Universities<br />NIRF 2025</p>
           </div>
         </div>
-
-        <!-- BOX 2 -->
-        <div
-          class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow
-                 border-2 border-dashed border-yellow-500
-                 w-48 flex items-center gap-3"
-        >
+        <div class="bg-white text-blue-900 rounded-xl px-4 py-3 shadow border-2 border-dashed border-yellow-500 w-48 flex items-center gap-3">
           <div class="text-3xl">🎓</div>
           <div>
             <h4 class="font-bold text-sm">Ranked 52</h4>
-            <p class="text-xs leading-tight">
-              Management Category<br />
-              NIRF 2025
-            </p>
+            <p class="text-xs leading-tight">Management Category<br />NIRF 2025</p>
           </div>
         </div>
-
       </div>
     </div>
 
-    <!-- RIGHT FORM -->
     <div class="w-full flex justify-center">
-     <div class="w-full max-w-[360px]">
-
-
-        <!-- FORM HEADING -->
-        <h2 class="text-center text-white text-2xl font-bold mb-4">
-          Apply Now
-        </h2>
-
-   <!-- FORM CARD -->
-<div class="bg-white rounded-xl shadow-xl px-6 py-5 max-w-xs mx-auto">
-
+      <div class="w-full max-w-[360px]">
+        <h2 class="text-center text-white text-2xl font-bold mb-4">Apply Now</h2>
+       <div class="bg-white rounded-xl shadow-xl px-5 py-5 max-w-xs mx-auto">
   <form id="leadForm" class="space-y-3.5" novalidate>
 
     <!-- Full Name -->
     <div>
-      <label class="block text-gray-900 font-semibold text-xs mb-1">Full Name</label>
-      <input id="name" type="text" placeholder="Your Name"
-        class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
-      <p id="nameError" class="text-[10px] text-red-500 hidden"></p>
+      <label class="block text-gray-900 font-semibold text-xs mb-1">
+        Full Name
+      </label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Your Name"
+        oninput="this.value = this.value.replace(/[0-9]/g, '')"
+        class="w-full h-9 px-3 rounded-md border border-gray-200 text-xs focus:outline-none focus:border-blue-500"
+      />
+      <p id="nameError" class="text-[10px] text-red-500 mt-1 hidden"></p>
     </div>
 
     <!-- Email -->
     <div>
-      <label class="block text-gray-900 font-semibold text-xs mb-1">Email</label>
-      <input id="email" type="email" placeholder="Your Email"
-        class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
-      <p id="emailError" class="text-[10px] text-red-500 hidden"></p>
+      <label class="block text-gray-900 font-semibold text-xs mb-1">
+        Email
+      </label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Your Email"
+        class="w-full h-9 px-3 rounded-md border border-gray-200 text-xs focus:outline-none focus:border-blue-500"
+      />
+      <p id="emailError" class="text-[10px] text-red-500 mt-1 hidden"></p>
     </div>
 
     <!-- Phone -->
     <div>
-      <label class="block text-gray-900 font-semibold text-xs mb-1">Phone</label>
+      <label class="block text-gray-900 font-semibold text-xs mb-1">
+        Phone Number
+      </label>
+
       <div class="flex gap-2">
-        <input id="phone" type="tel" placeholder="10-digit number"
-          class="flex-1 h-9 px-4 rounded-md border border-gray-200 text-xs">
+        <input
+          id="phone" 
+          type="tel"
+          maxlength="10"
+          placeholder="Your Number"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          class="flex-1 h-9 px-3 rounded-md border border-gray-200 text-xs focus:outline-none focus:border-blue-500"
+        />
         <button
-        type="button"
-        id="sendOtpBtn"
-        class="h-9 px-3 rounded-md text-white text-xs font-semibold
-          bg-gradient-to-r from-blue-600 to-yellow-400">
-        Verify
-      </button>
-
-<p id="resendTimer" class="text-[10px] text-gray-500 mt-1 hidden"></p>
-
+          type="button"
+          id="sendOtpBtn"
+          class="h-9 px-3 rounded-md text-white text-[11px] font-semibold bg-gradient-to-r from-blue-600 to-yellow-400"
+        >
+          Verify
+        </button>
       </div>
-      <p id="phoneError" class="text-[10px] text-red-500 hidden"></p>
-    </div>
 
-    <!-- OTP -->
-    <div id="otpSection" class="hidden">
-      <input id="otp" type="text" placeholder="Enter OTP"
-        class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
-      <p id="otpMsg" class="text-[10px]"></p>
+      <p id="phoneError" class="text-[10px] text-red-500 mt-1 hidden"></p>
+      <p id="mainOtpStatus" class="text-[10px] mt-1 hidden"></p>
     </div>
 
     <!-- State -->
     <div>
-      <label class="block text-gray-900 font-semibold text-xs mb-1">State</label>
-      <select id="state" class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
+      <label class="block text-gray-900 font-semibold text-xs mb-1">
+        State
+      </label>
+      <select
+        id="state"
+        class="w-full h-9 px-3 rounded-md border border-gray-200 text-xs"
+      >
         <option value="">Select State</option>
       </select>
-      <p id="stateError" class="text-[10px] text-red-500 hidden"></p>
+      <p id="stateError" class="text-[10px] text-red-500 mt-1 hidden">
+        Please select a state
+      </p>
     </div>
 
     <!-- City -->
     <div>
-      <label class="block text-gray-900 font-semibold text-xs mb-1">City</label>
-      <select id="city" class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
+      <label class="block text-gray-900 font-semibold text-xs mb-1">
+        City
+      </label>
+      <select
+        id="city"
+        class="w-full h-9 px-3 rounded-md border border-gray-200 text-xs"
+      >
         <option value="">Select City</option>
       </select>
-      <p id="cityError" class="text-[10px] text-red-500 hidden"></p>
+      <p id="cityError" class="text-[10px] text-red-500 mt-1 hidden">
+        Please select a city
+      </p>
     </div>
 
     <!-- Course -->
     <div>
-      <label class="block text-gray-900 font-semibold text-xs mb-1">Course</label>
-      <select id="course" class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
+      <label class="block text-gray-900 font-semibold text-xs mb-1">
+        Course
+      </label>
+      <select
+        id="course"
+        class="w-full h-9 px-3 rounded-md border border-gray-200 text-xs"
+      >
         <option value="">Select Course</option>
         <option>MBA Finance</option>
         <option>MBA Marketing</option>
         <option>MBA HR</option>
         <option>MBA Analytics</option>
       </select>
-      <p id="courseError" class="text-[10px] text-red-500 hidden"></p>
+      <p id="courseError" class="text-[10px] text-red-500 mt-1 hidden">
+        Selection is required
+      </p>
     </div>
 
     <!-- Consent -->
-    <div class="flex gap-2 text-[10px] text-gray-700 font-bold">
-      <input type="checkbox" id="consent" class="w-4 h-4">
-      <label>I authorize Graphic Era to contact me via Email, SMS, WhatsApp and Call. This will override DND / NDNC. </label>
+    <div class="flex gap-2 text-[10px] text-gray-700 font-bold leading-snug">
+      <input type="checkbox" id="consent" class="mt-0.5" />
+      <label for="consent">
+        I authorize Graphic Era to contact me via Email, SMS, WhatsApp and Call.
+        This will override DND / NDNC.
+      </label>
     </div>
     <p id="consentError" class="text-[10px] text-red-500 hidden"></p>
 
     <!-- Submit -->
-    <button class="w-full h-10 rounded-md text-white text-xs font-semibold bg-gradient-to-r from-blue-600 to-yellow-400">
+    <button
+      type="submit"
+      class="w-full h-10 rounded-md text-white text-xs font-semibold bg-gradient-to-r from-blue-600 to-yellow-400 uppercase tracking-wider"
+    >
       Submit
     </button>
 
   </form>
 </div>
-<!-- OTP MODAL -->
-<div id="otpModal"
-  class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-
-  <div class="bg-white rounded-xl p-5 w-[300px] relative">
-
-    <button id="closeOtp"
-      class="absolute top-2 right-3 text-lg text-gray-400">×</button>
-
-    <h3 class="text-sm font-semibold mb-1">Verify Phone Number</h3>
-    <p id="otpInfo" class="text-[11px] text-gray-600 mb-3"></p>
-
-    <input id="otpInput" type="text"
-      placeholder="Enter 6-digit OTP"
-      class="w-full h-9 px-3 border rounded-md text-xs mb-3">
-
-    <div class="flex gap-2">
-      <button id="verifyOtpBtn"
-        class="flex-1 h-9 rounded-md text-xs font-semibold text-white
-               bg-gradient-to-r from-blue-600 to-yellow-400">
-        Verify
-      </button>
-      <button id="cancelOtpBtn"
-        class="flex-1 h-9 rounded-md border text-xs">
-        Cancel
-      </button>
-    </div>
-
-    <p id="otpMsg" class="text-[10px] mt-2"></p>
-  </div>
-</div>
-
 
       </div>
     </div>
-
   </div>
 </section>
 
+<div id="otpModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[100] px-4">
+  <div class="bg-white rounded-xl p-6 w-full max-w-[320px] relative shadow-2xl">
+    <button id="closeOtp" class="absolute top-2 right-4 text-2xl text-gray-400 hover:text-gray-600">&times;</button>
+    <h3 class="text-base font-bold text-gray-900 mb-1">Verify Phone Number</h3>
+    <p class="text-[11px] text-gray-500 mb-4">OTP sent to <span id="displayPhone" class="font-bold text-gray-700"></span></p>
+
+    <div class="mb-4">
+      <input id="modalOtpInput" type="text" maxlength="6" placeholder="_ _ _ _ _ _" 
+             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+             class="w-full h-10 px-3 border-2 border-blue-500 rounded-md text-center text-lg font-bold tracking-[0.5em] focus:outline-none">
+      <p id="modalOtpMsg" class="text-[10px] mt-2 hidden text-center"></p>
+    </div>
+
+    <div class="flex gap-3 mb-4">
+      <button id="verifyOtpBtn" class="flex-1 h-10 rounded-md text-xs font-bold text-white font-semibold bg-gradient-to-r from-blue-600 to-yellow-400">Verify</button>
+      <button id="cancelOtpBtn" class="flex-1 h-10 rounded-md border border-gray-300 text-xs font-bold text-gray-600">Cancel</button>
+    </div>
+
+    <div class="text-center">
+      <button id="resendBtn" disabled class="text-[11px] font-bold text-blue-600 disabled:text-gray-400 disabled:no-underline underline">
+        Resend OTP
+      </button>
+      <span id="resendTimer" class="text-[11px] text-gray-500 ml-1"></span>
+    </div>
+  </div>
+</div>
 <!-- External JS -->
 <script src="scripts/hero-form.js" defer></script>
 
