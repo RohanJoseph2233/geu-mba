@@ -74,9 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     list.forEach(program => {
       const card = document.createElement("div");
+      // FIXED: Added 'h-fit' to ensure the card only takes up the height it needs.
       card.className = `
         bg-white rounded-xl p-6 flex flex-col shadow
-        transition-all duration-300
+        transition-all duration-300 h-fit
       `;
 
       card.innerHTML = `
@@ -96,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <div
           class="course-content text-gray-600 space-y-3
-                 max-h-0 overflow-hidden transition-all duration-300">
+                 max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
           <p class="text-sm leading-relaxed">${program.about}</p>
           <p class="font-semibold">Eligibility:</p>
           <p>${program.eligibility}</p>
@@ -124,9 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function attachHandlers() {
     document.querySelectorAll(".read-more-btn").forEach(btn => {
       btn.addEventListener("click", () => {
+        // Stop auto-scroll while reading
         stopAutoScroll();
         isAutoScrollEnabled = false;
 
+        const content = btn.previousElementSibling;
+        const expanded = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+        // 1. Close all other cards (Accordion effect)
         document.querySelectorAll(".read-more-btn").forEach(b => {
           if (b !== btn) {
             b.previousElementSibling.style.maxHeight = "0px";
@@ -134,13 +140,13 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
 
-        const content = btn.previousElementSibling;
-        const expanded = content.style.maxHeight && content.style.maxHeight !== "0px";
-
+        // 2. Toggle current card
         if (expanded) {
           content.style.maxHeight = "0px";
           btn.textContent = "Read More ▼";
-          startAutoScroll();
+          // Resume auto-scroll after a delay if closed
+          clearTimeout(inactivityTimer);
+          inactivityTimer = setTimeout(startAutoScroll, 3000);
         } else {
           content.style.maxHeight = content.scrollHeight + "px";
           btn.textContent = "Read Less ▲";
@@ -162,17 +168,18 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isAutoScrollEnabled) return;
 
       scrollIndex++;
+      track.style.transition = "transform 0.5s ease";
       track.style.transform = `translateX(-${scrollIndex * CARD_WIDTH}px)`;
 
+      // Logic for infinite loop (since list is duplicated)
       if (scrollIndex >= mbaPrograms.length) {
-        scrollIndex = 0;
-        track.style.transition = "none";
-        track.style.transform = "translateX(0)";
         setTimeout(() => {
-          track.style.transition = "transform 0.5s ease";
-        });
+          track.style.transition = "none";
+          scrollIndex = 0;
+          track.style.transform = "translateX(0)";
+        }, 500);
       }
-    }, 2200);
+    }, 2500);
   }
 
   function stopAutoScroll() {
@@ -209,8 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function scrollToTop() {
-    stopAutoScroll();
-    isAutoScrollEnabled = false;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -218,9 +223,14 @@ document.addEventListener("DOMContentLoaded", () => {
   searchInput.addEventListener("input", handleSearch);
   clearBtn.addEventListener("click", clearSearch);
 
-  wrapper.addEventListener("touchstart", stopAutoScroll);
+  wrapper.addEventListener("touchstart", () => {
+    stopAutoScroll();
+    isAutoScrollEnabled = false;
+  });
+  
   wrapper.addEventListener("touchend", () => {
-    inactivityTimer = setTimeout(startAutoScroll, 2000);
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(startAutoScroll, 3000);
   });
 
   /* ================= INIT ================= */
