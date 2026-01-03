@@ -93,14 +93,14 @@
           Apply Now
         </h2>
 
- <!-- FORM CARD -->
-<div class="bg-white rounded-xl shadow-xl px-6 py-5 max-w-xs mx-auto relative">
+   <!-- FORM CARD -->
+<div class="bg-white rounded-xl shadow-xl px-6 py-5 max-w-xs mx-auto">
 
   <form id="leadForm" class="space-y-3.5" novalidate>
 
     <!-- Full Name -->
     <div>
-      <label class="block font-semibold text-xs mb-1">Full Name</label>
+      <label class="block text-gray-900 font-semibold text-xs mb-1">Full Name</label>
       <input id="name" type="text" placeholder="Your Name"
         class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
       <p id="nameError" class="text-[10px] text-red-500 hidden"></p>
@@ -108,7 +108,7 @@
 
     <!-- Email -->
     <div>
-      <label class="block font-semibold text-xs mb-1">Email</label>
+      <label class="block text-gray-900 font-semibold text-xs mb-1">Email</label>
       <input id="email" type="email" placeholder="Your Email"
         class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
       <p id="emailError" class="text-[10px] text-red-500 hidden"></p>
@@ -116,23 +116,35 @@
 
     <!-- Phone -->
     <div>
-      <label class="block font-semibold text-xs mb-1">Phone</label>
+      <label class="block text-gray-900 font-semibold text-xs mb-1">Phone</label>
       <div class="flex gap-2">
         <input id="phone" type="tel" placeholder="10-digit number"
           class="flex-1 h-9 px-4 rounded-md border border-gray-200 text-xs">
-        <button type="button" id="sendOtpBtn"
-          class="h-9 px-3 rounded-md text-white text-xs font-semibold
-                 bg-gradient-to-r from-blue-600 to-yellow-400">
-          Verify
-        </button>
+        <button
+        type="button"
+        id="sendOtpBtn"
+        class="h-9 px-3 rounded-md text-white text-xs font-semibold
+          bg-gradient-to-r from-blue-600 to-yellow-400">
+        Verify
+      </button>
+
+<p id="resendTimer" class="text-[10px] text-gray-500 mt-1 hidden"></p>
+
       </div>
       <p id="phoneError" class="text-[10px] text-red-500 hidden"></p>
     </div>
 
+    <!-- OTP -->
+    <div id="otpSection" class="hidden">
+      <input id="otp" type="text" placeholder="Enter OTP"
+        class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
+      <p id="otpMsg" class="text-[10px]"></p>
+    </div>
+
     <!-- State -->
     <div>
-      <label class="block font-semibold text-xs mb-1">State</label>
-      <select id="state" class="w-full h-9 px-4 rounded-md border text-xs">
+      <label class="block text-gray-900 font-semibold text-xs mb-1">State</label>
+      <select id="state" class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
         <option value="">Select State</option>
       </select>
       <p id="stateError" class="text-[10px] text-red-500 hidden"></p>
@@ -140,8 +152,8 @@
 
     <!-- City -->
     <div>
-      <label class="block font-semibold text-xs mb-1">City</label>
-      <select id="city" class="w-full h-9 px-4 rounded-md border text-xs">
+      <label class="block text-gray-900 font-semibold text-xs mb-1">City</label>
+      <select id="city" class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
         <option value="">Select City</option>
       </select>
       <p id="cityError" class="text-[10px] text-red-500 hidden"></p>
@@ -149,8 +161,8 @@
 
     <!-- Course -->
     <div>
-      <label class="block font-semibold text-xs mb-1">Course</label>
-      <select id="course" class="w-full h-9 px-4 rounded-md border text-xs">
+      <label class="block text-gray-900 font-semibold text-xs mb-1">Course</label>
+      <select id="course" class="w-full h-9 px-4 rounded-md border border-gray-200 text-xs">
         <option value="">Select Course</option>
         <option>MBA Finance</option>
         <option>MBA Marketing</option>
@@ -161,24 +173,19 @@
     </div>
 
     <!-- Consent -->
-    <div class="flex gap-2 text-[10px] font-bold">
+    <div class="flex gap-2 text-[10px] text-gray-700 font-bold">
       <input type="checkbox" id="consent" class="w-4 h-4">
-      <label>
-        I authorize Graphic Era to contact me via Email, SMS, WhatsApp and Call.
-      </label>
+      <label>I authorize Graphic Era to contact me via Email, SMS, WhatsApp and Call. This will override DND / NDNC. </label>
     </div>
     <p id="consentError" class="text-[10px] text-red-500 hidden"></p>
 
     <!-- Submit -->
-    <button
-      class="w-full h-10 rounded-md text-white text-xs font-semibold
-             bg-gradient-to-r from-blue-600 to-yellow-400">
+    <button class="w-full h-10 rounded-md text-white text-xs font-semibold bg-gradient-to-r from-blue-600 to-yellow-400">
       Submit
     </button>
 
   </form>
 </div>
-
 <!-- OTP MODAL -->
 <div id="otpModal"
   class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
