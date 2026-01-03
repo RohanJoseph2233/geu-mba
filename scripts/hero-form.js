@@ -1,213 +1,190 @@
 document.addEventListener("DOMContentLoaded", () => {
+  /* ================= DATA ================= */
+  const stateCityMap = {
+    "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur"],
+    "Arunachal Pradesh": ["Itanagar"],
+    "Assam": ["Guwahati", "Silchar"],
+    "Bihar": ["Patna", "Gaya"],
+    "Chhattisgarh": ["Raipur", "Bilaspur"],
+    "Goa": ["Panaji", "Margao"],
+    "Gujarat": ["Ahmedabad", "Surat", "Vadodara"],
+    "Haryana": ["Gurgaon", "Faridabad"],
+    "Himachal Pradesh": ["Shimla", "Solan"],
+    "Jharkhand": ["Ranchi", "Jamshedpur"],
+    "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru"],
+    "Kerala": ["Kochi", "Trivandrum", "Calicut"],
+    "Madhya Pradesh": ["Bhopal", "Indore"],
+    "Maharashtra": ["Mumbai", "Pune", "Nagpur"],
+    "Manipur": ["Imphal"],
+    "Meghalaya": ["Shillong"],
+    "Mizoram": ["Aizawl"],
+    "Nagaland": ["Kohima"],
+    "Odisha": ["Bhubaneswar", "Cuttack"],
+    "Punjab": ["Chandigarh", "Ludhiana"],
+    "Rajasthan": ["Jaipur", "Udaipur"],
+    "Sikkim": ["Gangtok"],
+    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
+    "Telangana": ["Hyderabad", "Warangal"],
+    "Tripura": ["Agartala"],
+    "Uttar Pradesh": ["Noida", "Lucknow", "Kanpur"],
+    "Uttarakhand": ["Dehradun", "Haridwar"],
+    "West Bengal": ["Kolkata", "Durgapur"],
+    "Delhi": ["New Delhi", "Dwarka", "Saket"],
+    "Jammu & Kashmir": ["Srinagar", "Jammu"],
+    "Ladakh": ["Leh"],
+    "Puducherry": ["Puducherry"],
+    "Chandigarh": ["Chandigarh"],
+    "Andaman & Nicobar": ["Port Blair"],
+    "Dadra & Nagar Haveli": ["Silvassa"],
+    "Lakshadweep": ["Kavaratti"]
+  };
 
-/* ================= DATA ================= */
-const stateCityMap = {
-  "Andhra Pradesh":["Visakhapatnam","Vijayawada","Guntur"],
-  "Arunachal Pradesh":["Itanagar"],
-  "Assam":["Guwahati","Silchar"],
-  "Bihar":["Patna","Gaya"],
-  "Chhattisgarh":["Raipur","Bilaspur"],
-  "Goa":["Panaji","Margao"],
-  "Gujarat":["Ahmedabad","Surat","Vadodara"],
-  "Haryana":["Gurgaon","Faridabad"],
-  "Himachal Pradesh":["Shimla","Solan"],
-  "Jharkhand":["Ranchi","Jamshedpur"],
-  "Karnataka":["Bengaluru","Mysuru","Mangaluru"],
-  "Kerala":["Kochi","Trivandrum","Calicut"],
-  "Madhya Pradesh":["Bhopal","Indore"],
-  "Maharashtra":["Mumbai","Pune","Nagpur"],
-  "Manipur":["Imphal"],
-  "Meghalaya":["Shillong"],
-  "Mizoram":["Aizawl"],
-  "Nagaland":["Kohima"],
-  "Odisha":["Bhubaneswar","Cuttack"],
-  "Punjab":["Chandigarh","Ludhiana"],
-  "Rajasthan":["Jaipur","Udaipur"],
-  "Sikkim":["Gangtok"],
-  "Tamil Nadu":["Chennai","Coimbatore","Madurai"],
-  "Telangana":["Hyderabad","Warangal"],
-  "Tripura":["Agartala"],
-  "Uttar Pradesh":["Noida","Lucknow","Kanpur"],
-  "Uttarakhand":["Dehradun","Haridwar"],
-  "West Bengal":["Kolkata","Durgapur"],
-  "Delhi":["New Delhi","Dwarka","Saket"],
-  "Jammu & Kashmir":["Srinagar","Jammu"],
-  "Ladakh":["Leh"],
-  "Puducherry":["Puducherry"],
-  "Chandigarh":["Chandigarh"],
-  "Andaman & Nicobar":["Port Blair"],
-  "Dadra & Nagar Haveli":["Silvassa"],
-  "Lakshadweep":["Kavaratti"]
-};
- /* ================= ELEMENTS ================= */
   const form = document.getElementById("leadForm");
-  const nameInput = document.getElementById("name");
-  const emailInput = document.getElementById("email");
   const phoneInput = document.getElementById("phone");
-  const otpInput = document.getElementById("otp");
-  const otpSection = document.getElementById("otpSection");
-  const otpMsg = document.getElementById("otpMsg");
-
-  const stateSelect = document.getElementById("state");
-  const citySelect = document.getElementById("city");
-  const courseSelect = document.getElementById("course");
-  const consent = document.getElementById("consent");
-
-  const nameError = document.getElementById("nameError");
-  const emailError = document.getElementById("emailError");
-  const phoneError = document.getElementById("phoneError");
-  const stateError = document.getElementById("stateError");
-  const cityError = document.getElementById("cityError");
-  const courseError = document.getElementById("courseError");
-  const consentError = document.getElementById("consentError");
-
-  const sendOtpBtn = document.getElementById("sendOtpBtn");
-
+  const otpModal = document.getElementById("otpModal");
+  const resendBtn = document.getElementById("resendBtn");
+  const resendTimer = document.getElementById("resendTimer");
+  
   let generatedOTP = null;
   let otpVerified = false;
-  let resendTimer = null;
-  let resendSeconds = 30;
+  let timerInterval;
 
-  /* ================= HELPERS ================= */
-  function showError(input, el, msg) {
-    input?.classList.add("border-red-500");
-    el.textContent = msg;
-    el.classList.remove("hidden");
-  }
+  // --- Resend Timer Logic ---
+  const startTimer = () => {
+    let timeLeft = 30;
+    resendBtn.disabled = true;
+    resendTimer.textContent = `(in ${timeLeft}s)`;
+    
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        resendBtn.disabled = false;
+        resendTimer.textContent = "";
+      } else {
+        resendTimer.textContent = `(in ${timeLeft}s)`;
+      }
+    }, 1000);
+  };
 
-  function clearError(input, el) {
-    input?.classList.remove("border-red-500");
-    el.classList.add("hidden");
-  }
+  // --- OTP Flow ---
+  const sendOTP = () => {
+    const phoneVal = phoneInput.value.trim();
+    const phoneError = document.getElementById("phoneError");
+    
+    if (phoneVal.length !== 10) {
+      phoneError.textContent = "Enter a valid 10-digit number";
+      phoneError.classList.remove("hidden");
+      return;
+    }
+    
+    phoneError.classList.add("hidden");
+    generatedOTP = Math.floor(100000 + Math.random() * 900000);
+    console.log("OTP:", generatedOTP); // For testing
+    
+    document.getElementById("displayPhone").textContent = phoneVal;
+    otpModal.classList.replace("hidden", "flex");
+    startTimer();
+  };
 
-  /* ================= POPULATE STATES ================= */
-  Object.keys(stateCityMap).forEach(state => {
+  document.getElementById("sendOtpBtn").addEventListener("click", sendOTP);
+  resendBtn.addEventListener("click", () => {
+    const msg = document.getElementById("modalOtpMsg");
+    msg.textContent = "New OTP Sent!";
+    msg.className = "text-[10px] mt-2 text-blue-600 block";
+    msg.classList.remove("hidden");
+    sendOTP();
+  });
+
+  document.getElementById("verifyOtpBtn").addEventListener("click", () => {
+    const inputOtp = document.getElementById("modalOtpInput").value;
+    const msg = document.getElementById("modalOtpMsg");
+
+    if (inputOtp === String(generatedOTP)) {
+      otpVerified = true;
+      document.getElementById("mainOtpStatus").innerHTML = '<span class="text-green-600 font-bold">Verified ✔</span>';
+      document.getElementById("mainOtpStatus").classList.remove("hidden");
+      
+      const btn = document.getElementById("sendOtpBtn");
+      btn.textContent = "Verified";
+      btn.disabled = true;
+      btn.classList.add("opacity-50");
+      phoneInput.readOnly = true;
+
+      otpModal.classList.replace("flex", "hidden");
+    } else {
+      msg.textContent = "Invalid OTP code. Please try again.";
+      msg.className = "text-[10px] mt-2 text-red-500 block";
+      msg.classList.remove("hidden");
+    }
+  });
+
+  // --- Form Validation ---
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let isValid = true;
+
+    // Reset errors
+    document.querySelectorAll(".text-red-500").forEach(el => el.classList.add("hidden"));
+
+    const config = [
+      { id: "name", error: "nameError", msg: "Name required (no numbers)", min: 3 },
+      { id: "email", error: "emailError", msg: "Enter a valid email", reg: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+      { id: "state", error: "stateError" },
+      { id: "city", error: "cityError" },
+      { id: "course", error: "courseError" }
+    ];
+
+    config.forEach(f => {
+      const el = document.getElementById(f.id);
+      const err = document.getElementById(f.error);
+      if (!el.value || (f.min && el.value.length < f.min) || (f.reg && !f.reg.test(el.value))) {
+        if(f.msg) err.textContent = f.msg;
+        err.classList.remove("hidden");
+        isValid = false;
+      }
+    });
+
+    if (!otpVerified) {
+      const pErr = document.getElementById("phoneError");
+      pErr.textContent = "Verify your phone number to continue";
+      pErr.classList.remove("hidden");
+      isValid = false;
+    }
+
+    if (!document.getElementById("consent").checked) {
+      document.getElementById("consentError").textContent = "Please agree to the terms";
+      document.getElementById("consentError").classList.remove("hidden");
+      isValid = false;
+    }
+
+    if (isValid) {
+      alert("Application successfully submitted!");
+      form.reset();
+      window.location.reload();
+    }
+  });
+
+  // --- Helpers ---
+  const stateSelect = document.getElementById("state");
+  Object.keys(stateCityMap).sort().forEach(s => {
     const opt = document.createElement("option");
-    opt.textContent = state;
+    opt.value = s; opt.textContent = s;
     stateSelect.appendChild(opt);
   });
 
-  stateSelect.addEventListener("change", () => {
-    citySelect.innerHTML = `<option value="">Select City</option>`;
-    (stateCityMap[stateSelect.value] || []).forEach(city => {
+  stateSelect.onchange = () => {
+    const citySelect = document.getElementById("city");
+    citySelect.innerHTML = '<option value="">Select City</option>';
+    (stateCityMap[stateSelect.value] || []).sort().forEach(c => {
       const opt = document.createElement("option");
-      opt.textContent = city;
+      opt.value = c; opt.textContent = c;
       citySelect.appendChild(opt);
     });
-    clearError(stateSelect, stateError);
-  });
+  };
 
-  /* ================= OTP TIMER ================= */
-  function startResendTimer() {
-    resendSeconds = 30;
-    sendOtpBtn.disabled = true;
-    sendOtpBtn.classList.add("opacity-50");
-
-    resendTimer = setInterval(() => {
-      sendOtpBtn.textContent = `Resend (${resendSeconds}s)`;
-      resendSeconds--;
-
-      if (resendSeconds < 0) {
-        clearInterval(resendTimer);
-        sendOtpBtn.disabled = false;
-        sendOtpBtn.classList.remove("opacity-50");
-        sendOtpBtn.textContent = "Resend OTP";
-      }
-    }, 1000);
-  }
-
-  /* ================= SEND OTP ================= */
-  sendOtpBtn.addEventListener("click", () => {
-
-    if (!/^[0-9]{10}$/.test(phoneInput.value)) {
-      showError(phoneInput, phoneError, "Enter valid 10-digit number");
-      return;
-    }
-
-    clearError(phoneInput, phoneError);
-
-    generatedOTP = Math.floor(100000 + Math.random() * 900000);
-    console.log("OTP (demo):", generatedOTP); // 🔴 demo only
-
-    otpVerified = false;
-    otpSection.classList.remove("hidden");
-    otpMsg.textContent = "OTP sent successfully";
-    otpMsg.className = "text-blue-600 text-[10px]";
-
-    startResendTimer();
-  });
-
-  /* ================= VERIFY OTP ================= */
-  otpInput.addEventListener("input", () => {
-    if (otpInput.value.length === 6) {
-      if (otpInput.value === String(generatedOTP)) {
-        otpVerified = true;
-        otpMsg.textContent = "OTP Verified ✔";
-        otpMsg.className = "text-green-600 text-[10px]";
-      } else {
-        otpVerified = false;
-        otpMsg.textContent = "Invalid OTP";
-        otpMsg.className = "text-red-500 text-[10px]";
-      }
-    }
-  });
-
-  /* ================= FORM SUBMIT ================= */
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    let valid = true;
-
-    if (!/^[A-Za-z ]{3,}$/.test(nameInput.value)) {
-      showError(nameInput, nameError, "Minimum 3 letters required");
-      valid = false;
-    } else clearError(nameInput, nameError);
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
-      showError(emailInput, emailError, "Invalid email");
-      valid = false;
-    } else clearError(emailInput, emailError);
-
-    if (!/^[0-9]{10}$/.test(phoneInput.value)) {
-      showError(phoneInput, phoneError, "Invalid phone number");
-      valid = false;
-    }
-
-    if (!otpVerified) {
-      otpMsg.textContent = "Please verify OTP";
-      otpMsg.className = "text-red-500 text-[10px]";
-      valid = false;
-    }
-
-    if (!stateSelect.value) {
-      showError(stateSelect, stateError, "Select state");
-      valid = false;
-    } else clearError(stateSelect, stateError);
-
-    if (!citySelect.value) {
-      showError(citySelect, cityError, "Select city");
-      valid = false;
-    } else clearError(citySelect, cityError);
-
-    if (!courseSelect.value) {
-      showError(courseSelect, courseError, "Select course");
-      valid = false;
-    } else clearError(courseSelect, courseError);
-
-    if (!consent.checked) {
-      consentError.textContent = "Consent required";
-      consentError.classList.remove("hidden");
-      valid = false;
-    } else consentError.classList.add("hidden");
-
-    if (!valid) return;
-
-    alert("Form submitted successfully!");
-
-    form.reset();
-    otpSection.classList.add("hidden");
-    otpVerified = false;
-    sendOtpBtn.textContent = "Verify";
-  });
-
+  const close = () => otpModal.classList.replace("flex", "hidden");
+  document.getElementById("closeOtp").onclick = close;
+  document.getElementById("cancelOtpBtn").onclick = close;
 });
