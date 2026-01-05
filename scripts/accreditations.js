@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "UGC Recognition",
       description:
         "Approved by UGC and accorded the coveted Regularized Status by the Ministry of Education, Government of India."
+    },  {
+      logo: "images/qs.jpg",
+      title: "QS Ranked",
+      description:
+        "Featured in the QS World University ranking and QS Asia University ranking for consistent quality "
     }
   ];
 
