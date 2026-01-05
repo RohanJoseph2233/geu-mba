@@ -26,6 +26,10 @@ const campusHighlights = [
   {
     name: "CSIT Block",
     image: "images/CSIT-Block6.webp"
+  },
+   {
+    name: "Campus",
+    image: "images/GEU-campus.webp"
   }
 ];
 
